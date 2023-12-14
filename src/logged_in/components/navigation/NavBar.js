@@ -6,7 +6,6 @@ import {
   AppBar,
   Toolbar,
   Typography,
-  Avatar,
   Drawer,
   List,
   IconButton,
@@ -18,17 +17,15 @@ import {
   Box,
 } from "@mui/material";
 import withStyles from "@mui/styles/withStyles";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ImageIcon from "@mui/icons-material/Image";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import MenuIcon from "@mui/icons-material/Menu";
+import HomeIcon from "@mui/icons-material/Home";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import MessagePopperButton from "./MessagePopperButton";
-import SideDrawer from "./SideDrawer";
-import Balance from "./Balance";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import SideDrawer from "./SideDrawer";
 
 const styles = (theme) => ({
   appBar: {
@@ -126,7 +123,7 @@ const styles = (theme) => ({
 });
 
 function NavBar(props) {
-  const { selectedTab, messages, classes, openAddBalanceDialog, theme } = props;
+  const { selectedTab, classes, openAddBalanceDialog, theme } = props;
   // Will be use to make website more accessible by screen readers
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -151,53 +148,51 @@ function NavBar(props) {
 
   const menuItems = [
     {
-      link: "/c/dashboard",
-      name: "Dashboard",
+      link: "/c/toppage",
+      name: "Toppage",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <DashboardIcon
+          <HomeIcon
             className={
-              selectedTab === "Dashboard" ? classes.textPrimary : "text-white"
+              selectedTab === "Toppage" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <DashboardIcon className="text-white" />,
+        mobile: <HomeIcon className="text-white" />,
       },
     },
     {
-      link: "/c/posts",
-      name: "Posts",
+      link: "/c/createBook",
+      name: "CreateBook",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <ImageIcon
+          <HistoryEduIcon
             className={
-              selectedTab === "Posts" ? classes.textPrimary : "text-white"
+              selectedTab === "CreateBook" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <ImageIcon className="text-white" />,
+        mobile: <HistoryEduIcon className="text-white" />,
       },
     },
     {
-      link: "/c/subscription",
-      name: "Subscription",
+      link: "/c/booklist",
+      name: "BookList",
       onClick: closeMobileDrawer,
       icon: {
         desktop: (
-          <AccountBalanceIcon
+          <MenuBookIcon
             className={
-              selectedTab === "Subscription"
-                ? classes.textPrimary
-                : "text-white"
+              selectedTab === "BookList" ? classes.textPrimary : "text-white"
             }
             fontSize="small"
           />
         ),
-        mobile: <AccountBalanceIcon className="text-white" />,
+        mobile: <MenuBookIcon className="text-white" />,
       },
     },
     {
@@ -234,8 +229,9 @@ function NavBar(props) {
                 className={classes.brandText}
                 display="inline"
                 color="primary"
+                noWrap
               >
-                Wa
+                わたしよめるモン
               </Typography>
               <Typography
                 variant="h4"
@@ -243,7 +239,7 @@ function NavBar(props) {
                 display="inline"
                 color="secondary"
               >
-                Ver
+                β
               </Typography>
             </Hidden>
           </Box>
@@ -253,24 +249,10 @@ function NavBar(props) {
             alignItems="center"
             width="100%"
           >
-            {isWidthUpSm && (
-              <Box mr={3}>
-                <Balance
-                  balance={2573}
-                  openAddBalanceDialog={openAddBalanceDialog}
-                />
-              </Box>
-            )}
-            <MessagePopperButton messages={messages} />
             <ListItem
               disableGutters
               className={classNames(classes.iconListItem, classes.smBordered)}
             >
-              <Avatar
-                alt="profile picture"
-                src={`${process.env.PUBLIC_URL}/images/logged_in/profilePicture.jpg`}
-                className={classNames(classes.accountAvatar)}
-              />
               {isWidthUpSm && (
                 <ListItemText
                   className={classes.username}
@@ -357,7 +339,6 @@ function NavBar(props) {
 }
 
 NavBar.propTypes = {
-  messages: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectedTab: PropTypes.string.isRequired,
   classes: PropTypes.object.isRequired,
   openAddBalanceDialog: PropTypes.func.isRequired,

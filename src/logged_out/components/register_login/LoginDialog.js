@@ -2,8 +2,14 @@ import React, { useState, useCallback, useRef, Fragment } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { withRouter } from "react-router-dom";
-import { TextField, Button, Checkbox, Typography, FormControlLabel } from "@mui/material";
-import withStyles from '@mui/styles/withStyles';
+import {
+  TextField,
+  Button,
+  Checkbox,
+  Typography,
+  FormControlLabel,
+} from "@mui/material";
+import withStyles from "@mui/styles/withStyles";
 import FormDialog from "../../../shared/components/FormDialog";
 import HighlightedInformation from "../../../shared/components/HighlightedInformation";
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
@@ -41,28 +47,28 @@ function LoginDialog(props) {
   } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const loginEmail = useRef();
+  const loginUsername = useRef();
   const loginPassword = useRef();
 
   const login = useCallback(() => {
     setIsLoading(true);
     setStatus(null);
-    if (loginEmail.current.value !== "test@web.com") {
+    if (loginUsername.current.value !== "test") {
       setTimeout(() => {
-        setStatus("invalidEmail");
+        setStatus("invalidUsername");
         setIsLoading(false);
       }, 1500);
-    } else if (loginPassword.current.value !== "HaRzwc") {
+    } else if (loginPassword.current.value !== "test") {
       setTimeout(() => {
         setStatus("invalidPassword");
         setIsLoading(false);
       }, 1500);
     } else {
       setTimeout(() => {
-        history.push("/c/dashboard");
+        history.push("/c/toppage");
       }, 150);
     }
-  }, [setIsLoading, loginEmail, loginPassword, history, setStatus]);
+  }, [setIsLoading, loginUsername, loginPassword, history, setStatus]);
 
   return (
     <Fragment>
@@ -81,22 +87,21 @@ function LoginDialog(props) {
             <TextField
               variant="outlined"
               margin="normal"
-              error={status === "invalidEmail"}
+              error={status === "invalidUsername"}
               required
               fullWidth
-              label="Email Address"
-              inputRef={loginEmail}
+              label="Username"
+              inputRef={loginUsername}
               autoFocus
               autoComplete="off"
-              type="email"
+              type="text"
               onChange={() => {
-                if (status === "invalidEmail") {
+                if (status === "invalidUsername") {
                   setStatus(null);
                 }
               }}
               helperText={
-                status === "invalidEmail" &&
-                "This email address isn't associated with an account."
+                status === "invalidUsername" && "This username does not exist"
               }
               FormHelperTextProps={{ error: true }}
             />
@@ -133,16 +138,16 @@ function LoginDialog(props) {
               control={<Checkbox color="primary" />}
               label={<Typography variant="body1">Remember me</Typography>}
             />
-            {status === "verificationEmailSend" ? (
+            {status === "verificationUsernameSend" ? (
               <HighlightedInformation>
                 We have send instructions on how to reset your password to your
-                email address
+                username
               </HighlightedInformation>
             ) : (
               <HighlightedInformation>
-                Email is: <b>test@web.com</b>
+                Username is: <b>test</b>
                 <br />
-                Password is: <b>HaRzwc</b>
+                Password is: <b>test</b>
               </HighlightedInformation>
             )}
           </Fragment>

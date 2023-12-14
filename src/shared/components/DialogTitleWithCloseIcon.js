@@ -1,18 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { IconButton, DialogTitle, Typography, Box } from "@mui/material";
-import withTheme from '@mui/styles/withTheme';
+import withTheme from "@mui/styles/withTheme";
 import CloseIcon from "@mui/icons-material/Close";
 
 function DialogTitleWithCloseIcon(props) {
-  const {
-    theme,
-    paddingBottom,
-    onClose,
-    disabled,
-    title,
-    disablePadding
-  } = props;
+  const { theme, paddingBottom, onClose, disabled, title, disablePadding } =
+    props;
   return (
     <DialogTitle
       style={{
@@ -24,8 +18,9 @@ function DialogTitleWithCloseIcon(props) {
         paddingLeft: disablePadding ? 0 : null,
         paddingRight: disablePadding ? 0 : null,
         paddingTop: disablePadding ? 0 : theme.spacing(2),
-        width: "100%"
-      }}>
+        width: "100%",
+      }}
+    >
       <Box display="flex" justifyContent="space-between">
         <Typography variant="h5">{title}</Typography>
         <IconButton
@@ -33,7 +28,8 @@ function DialogTitleWithCloseIcon(props) {
           style={{ marginRight: -12, marginTop: -10 }}
           disabled={disabled}
           aria-label="Close"
-          size="large">
+          size="large"
+        >
           <CloseIcon />
         </IconButton>
       </Box>
@@ -47,7 +43,7 @@ DialogTitleWithCloseIcon.propTypes = {
   onClose: PropTypes.func,
   disabled: PropTypes.bool,
   title: PropTypes.string,
-  disablePadding: PropTypes.bool
+  disablePadding: PropTypes.bool,
 };
 
 export default withTheme(DialogTitleWithCloseIcon);

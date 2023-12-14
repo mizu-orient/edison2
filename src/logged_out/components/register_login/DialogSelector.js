@@ -1,20 +1,12 @@
 import React, { useState, useCallback, Fragment } from "react";
 import PropTypes from "prop-types";
-import RegisterDialog from "./RegisterDialog";
-import TermsOfServiceDialog from "./TermsOfServiceDialog";
 import LoginDialog from "./LoginDialog";
 import ChangePasswordDialog from "./ChangePasswordDialog";
 import ModalBackdrop from "../../../shared/components/ModalBackdrop";
 
-function DialogSelector(props) {
-  const {
-    dialogOpen,
-    openTermsDialog,
-    openRegisterDialog,
-    openLoginDialog,
-    openChangePasswordDialog,
-    onClose,
-  } = props;
+const DialogSelector = (props) => {
+  const { dialogOpen, openLoginDialog, openChangePasswordDialog, onClose } =
+    props;
   const [loginStatus, setLoginStatus] = useState(null);
   const [registerStatus, setRegisterStatus] = useState(null);
 
@@ -26,17 +18,6 @@ function DialogSelector(props) {
 
   const printDialog = useCallback(() => {
     switch (dialogOpen) {
-      case "register":
-        return (
-          <RegisterDialog
-            onClose={_onClose}
-            openTermsDialog={openTermsDialog}
-            status={registerStatus}
-            setStatus={setRegisterStatus}
-          />
-        );
-      case "termsOfService":
-        return <TermsOfServiceDialog onClose={openRegisterDialog} />;
       case "login":
         return (
           <LoginDialog
@@ -59,8 +40,6 @@ function DialogSelector(props) {
     dialogOpen,
     openChangePasswordDialog,
     openLoginDialog,
-    openRegisterDialog,
-    openTermsDialog,
     _onClose,
     loginStatus,
     registerStatus,
@@ -74,7 +53,7 @@ function DialogSelector(props) {
       {printDialog()}
     </Fragment>
   );
-}
+};
 
 DialogSelector.propTypes = {
   dialogOpen: PropTypes.string,

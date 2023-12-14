@@ -1,10 +1,9 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
-import { Switch } from "react-router-dom";
-import withStyles from '@mui/styles/withStyles';
-import Dashboard from "./dashboard/Dashboard";
-import Posts from "./posts/Posts";
-import Subscription from "./subscription/Subscription";
+import { Switch, Route } from "react-router-dom";
+import withStyles from "@mui/styles/withStyles";
+import Toppage from "./Toppage";
+import BookList from "./books/BookList";
 import PropsRoute from "../../shared/components/PropsRoute";
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
 
@@ -60,7 +59,7 @@ function Routing(props) {
     setTargets,
     setPosts,
     isAccountActivated,
-    selectDashboard,
+    selectToppage,
     selectPosts,
     selectSubscription,
     openAddBalanceDialog,
@@ -69,37 +68,18 @@ function Routing(props) {
   return (
     <div className={classes.wrapper}>
       <Switch>
-        <PropsRoute
-          path="/c/posts"
-          component={Posts}
-          EmojiTextArea={EmojiTextArea}
-          ImageCropper={ImageCropper}
-          Dropzone={Dropzone}
-          DateTimePicker={DateTimePicker}
-          pushMessageToSnackbar={pushMessageToSnackbar}
-          posts={posts}
-          setPosts={setPosts}
-          selectPosts={selectPosts}
-        />
-        <PropsRoute
-          path="/c/subscription"
-          component={Subscription}
-          transactions={transactions}
-          pushMessageToSnackbar={pushMessageToSnackbar}
-          selectSubscription={selectSubscription}
-          openAddBalanceDialog={openAddBalanceDialog}
-        />
-        <PropsRoute
+        {/* <PropsRoute
           path=""
-          component={Dashboard}
-          toggleAccountActivation={toggleAccountActivation}
-          pushMessageToSnackbar={pushMessageToSnackbar}
-          CardChart={CardChart}
-          statistics={statistics}
+          component={Toppage}
           targets={targets}
           setTargets={setTargets}
-          isAccountActivated={isAccountActivated}
-          selectDashboard={selectDashboard}
+          selectToppage={selectToppage}
+        /> */}
+        <PropsRoute
+          path="/c/booklist"
+          component={BookList}
+          transactions={transactions}
+          pushMessageToSnackbar={pushMessageToSnackbar}
         />
       </Switch>
     </div>
@@ -122,7 +102,7 @@ Routing.propTypes = {
   statistics: PropTypes.object.isRequired,
   targets: PropTypes.arrayOf(PropTypes.object).isRequired,
   isAccountActivated: PropTypes.bool.isRequired,
-  selectDashboard: PropTypes.func.isRequired,
+  selectToppage: PropTypes.func.isRequired,
   selectPosts: PropTypes.func.isRequired,
   selectSubscription: PropTypes.func.isRequired,
   openAddBalanceDialog: PropTypes.func.isRequired,

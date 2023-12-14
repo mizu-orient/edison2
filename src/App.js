@@ -1,5 +1,9 @@
 import React, { Fragment, Suspense, lazy } from "react";
-import { ThemeProvider, StyledEngineProvider, CssBaseline } from "@mui/material";
+import {
+  ThemeProvider,
+  StyledEngineProvider,
+  CssBaseline,
+} from "@mui/material";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import theme from "./theme";
 import GlobalStyles from "./GlobalStyles";
@@ -9,7 +13,7 @@ const LoggedInComponent = lazy(() => import("./logged_in/components/Main"));
 
 const LoggedOutComponent = lazy(() => import("./logged_out/components/Main"));
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <StyledEngineProvider injectFirst>
@@ -31,6 +35,6 @@ function App() {
       </StyledEngineProvider>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
