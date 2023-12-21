@@ -23,13 +23,6 @@ const Main = (props) => {
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(null);
 
-  const selectHome = useCallback(() => {
-    // smoothScrollTop();
-    document.title =
-      "WaVer - Free template for building a SaaS or admin application";
-    setSelectedTab("Home");
-  }, [setSelectedTab]);
-
   const openLoginDialog = useCallback(() => {
     setDialogOpen("login");
     setIsMobileDrawerOpen(false);

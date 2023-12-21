@@ -123,7 +123,7 @@ const styles = (theme) => ({
 });
 
 function NavBar(props) {
-  const { selectedTab, classes, openAddBalanceDialog, theme } = props;
+  const { selectedTab, classes, theme } = props;
   // Will be use to make website more accessible by screen readers
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -339,9 +339,8 @@ function NavBar(props) {
 }
 
 NavBar.propTypes = {
-  selectedTab: PropTypes.string.isRequired,
+  selectedTab: PropTypes.string,
   classes: PropTypes.object.isRequired,
-  openAddBalanceDialog: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(NavBar);

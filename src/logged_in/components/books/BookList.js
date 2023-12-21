@@ -10,7 +10,17 @@ import BookDataHandler from "./BookDataHandler";
 import nobooks from "./images/nobooks.png";
 import cover from "./images/notavailable.png";
 
-function BookList() {
+const BookList = (props) => {
+  const { selectBookList } = props;
+
+  const dummyBooks = [
+    { name: "Book 1", sentence: "This is the first book", image: cover },
+    { name: "Book 2", sentence: "This is the second book", image: cover },
+    // 他のダミーデータもここに追加
+  ];
+
+  const [books, setBooks] = useState(dummyBooks); // ダミーデータを初期状態として設定
+
   const columns = [
     { name: "book", align: "left" },
     { name: "description", align: "left" },
@@ -18,35 +28,15 @@ function BookList() {
     { name: "action", align: "center" },
   ];
 
-  const [books, setBooks] = useState([]);
   const [rows, setRows] = useState([]);
   const [currentBook, setCurrentBook] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchTitle, setSearchTitle] = useState("");
 
   useEffect(() => {
+    selectBookList();
     retrieveBooks();
-  }, []);
-
-  function Book({ image, title }) {
-    return (
-      <Box display="flex" alignItems="center" px={1} py={0.5}>
-        <Box mr={2}>
-          <Avatar src={image} alt={title} variant="rounded" />
-        </Box>
-        <Box display="flex" flexDirection="column">
-          <Typography variant="button" fontWeight="medium">
-            {title}
-          </Typography>
-        </Box>
-      </Box>
-    );
-  }
-
-  Book.propTypes = {
-    image: PropTypes.string,
-    title: PropTypes.string,
-  };
+  }, [selectBookList]);
 
   const getRows = (books) => {
     const rows = [];
@@ -74,18 +64,7 @@ function BookList() {
     //   .catch((e) => {
     //     console.log(e);
     //   });
-    console.log("TBD");
-  };
-
-  const refreshList = () => {
-    retrieveBooks();
-    setCurrentBook(null);
-    setCurrentIndex(-1);
-  };
-
-  const setActiveBook = (book, index) => {
-    setCurrentBook(book);
-    setCurrentIndex(index);
+    console.log("Books retrieved: ", books);
   };
 
   const removeAllBooks = () => {
@@ -113,6 +92,29 @@ function BookList() {
     console.log("TBD");
   };
 
+  // Book コンポーネントの定義
+  const Book = ({ image, title, sentence }) => {
+    return (
+      <Box display="flex" alignItems="center" px={1} py={0.5}>
+        <Box mr={2}>
+          <Avatar src={image} alt={title} variant="rounded" />
+        </Box>
+        <Box display="flex" flexDirection="column">
+          <Typography variant="button" fontWeight="medium">
+            {title}
+          </Typography>
+          <Typography variant="body2">{sentence}</Typography>
+        </Box>
+      </Box>
+    );
+  };
+
+  Book.propTypes = {
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    sentence: PropTypes.string.isRequired,
+  };
+
   return (
     <>
       {books.length > 0 ? (
@@ -127,19 +129,14 @@ function BookList() {
               >
                 <Typography variant="h6">Book table</Typography>
               </Box>
-              <Box
-                sx={{
-                  "& .MuiTableRow-root:not(:last-child)": {
-                    "& td": {
-                      borderBottom: ({
-                        borders: { borderWidth, borderColor },
-                      }) => `${borderWidth[1]} solid ${borderColor}`,
-                    },
-                  },
-                }}
-              >
-                <div>TBD:BookList</div>
-              </Box>
+              {books.map((book, index) => (
+                <Book
+                  key={index}
+                  image={book.image}
+                  title={book.name}
+                  sentence={book.sentence}
+                />
+              ))}
             </Card>
           </Box>
         </Box>
@@ -157,11 +154,10 @@ function BookList() {
       )}
 
       <Box display="flex" justifyContent="center" mt={3} mb={8}>
-        <Link to={"/book-app/add-book"}>
+        <Link to={"/c/createbook"}>
           <Button color="info" size="medium">
-            Add Book
+            Create Your Book
           </Button>
-          &nbsp;&nbsp;
         </Link>
         {books.length > 0 ? (
           <Button color="error" size="medium" onClick={removeAllBooks}>
@@ -173,6 +169,10 @@ function BookList() {
       </Box>
     </>
   );
-}
+};
+
+BookList.propTypes = {
+  selectBookList: PropTypes.func.isRequired,
+};
 
 export default BookList;

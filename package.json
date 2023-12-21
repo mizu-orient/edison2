@@ -66,13 +66,6 @@
       "last 1 safari version"
     ]
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dunky11/react-saas-template.git"
-  },
   "author": "dunky11",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/dunky11/react-saas-template/issues"
-  }
+  "license": "MIT"
 }

@@ -59,8 +59,6 @@ DialogSelector.propTypes = {
   dialogOpen: PropTypes.string,
   openLoginDialog: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
-  openTermsDialog: PropTypes.func.isRequired,
-  openRegisterDialog: PropTypes.func.isRequired,
   openChangePasswordDialog: PropTypes.func.isRequired,
 };
 

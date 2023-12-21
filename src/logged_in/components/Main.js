@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useEffect, useState, Fragment } from "react";
 import withStyles from "@mui/styles/withStyles";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
@@ -20,55 +21,42 @@ const styles = (theme) => ({
 
 const Main = (props) => {
   const { classes } = props;
-  const [selectedTab, setSelectedTab] = useState(null);
-  const [isAccountActivated, setIsAccountActivated] = useState(false);
-  const [ImageCropper, setImageCropper] = useState(null);
-  const [EmojiTextArea, setEmojiTextArea] = useState(null);
-  const [Dropzone, setDropzone] = useState(null);
-  const [DateTimePicker, setDateTimePicker] = useState(null);
-  const [pushMessageToSnackbar, setPushMessageToSnackbar] = useState(null);
-  const [transactions, setTransactions] = useState([]);
-  const [statistics, setStatistics] = useState({ views: [], profit: [] });
-  const [posts, setPosts] = useState([]);
-  const [targets, setTargets] = useState([]);
+  const [selectedTab, setSelectedTab] = useState("");
 
-  const toggleAccountActivation = useCallback(() => {
-    if (pushMessageToSnackbar) {
-      if (isAccountActivated) {
-        pushMessageToSnackbar({
-          text: "Your account is now deactivated.",
-        });
-      } else {
-        pushMessageToSnackbar({
-          text: "Your account is now activated.",
-        });
-      }
-    }
-    setIsAccountActivated(!isAccountActivated);
-  }, [pushMessageToSnackbar, isAccountActivated, setIsAccountActivated]);
+  // TBD:本の取得確認
+  const [hasFetchBooks, setHasFetchBooks] = useState(false);
+
+  const selectToppage = useCallback(() => {
+    document.title = "Toppage";
+    setSelectedTab("Topppage");
+  }, [setSelectedTab]);
+
+  const selectBookList = useCallback(() => {
+    document.title = "BookList";
+    setSelectedTab("BookList");
+  }, [setSelectedTab]);
+
+  const selectCreateBook = useCallback(() => {
+    document.title = "CreateBook";
+    setSelectedTab("CreateBook");
+  }, [setSelectedTab]);
 
   return (
     <Fragment>
       <NavBar selectedTab={selectedTab} />
       <main className={classNames(classes.main)}>
         <Routing
-          isAccountActivated={isAccountActivated}
-          ImageCropper={ImageCropper}
-          EmojiTextArea={EmojiTextArea}
-          Dropzone={Dropzone}
-          DateTimePicker={DateTimePicker}
-          toggleAccountActivation={toggleAccountActivation}
-          pushMessageToSnackbar={pushMessageToSnackbar}
-          transactions={transactions}
-          statistics={statistics}
-          posts={posts}
-          targets={targets}
-          setTargets={setTargets}
-          setPosts={setPosts}
+          selectToppage={selectToppage}
+          selectBookList={selectBookList}
+          selectCreateBook={selectCreateBook}
         />
       </main>
     </Fragment>
   );
+};
+
+Main.propTypes = {
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(memo(Main));

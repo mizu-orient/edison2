@@ -42,7 +42,6 @@ const styles = (theme) => ({
 const NavBar = (props) => {
   const {
     classes,
-    openRegisterDialog,
     openLoginDialog,
     handleMobileDrawerOpen,
     handleMobileDrawerClose,
@@ -152,7 +151,6 @@ NavBar.propTypes = {
   handleMobileDrawerClose: PropTypes.func,
   mobileDrawerOpen: PropTypes.bool,
   selectedTab: PropTypes.string,
-  openRegisterDialog: PropTypes.func.isRequired,
   openLoginDialog: PropTypes.func.isRequired,
 };
 

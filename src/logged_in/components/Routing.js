@@ -2,10 +2,13 @@ import React, { memo } from "react";
 import PropTypes from "prop-types";
 import { Switch, Route } from "react-router-dom";
 import withStyles from "@mui/styles/withStyles";
-import Toppage from "./Toppage";
-import BookList from "./books/BookList";
+
 import PropsRoute from "../../shared/components/PropsRoute";
 import useLocationBlocker from "../../shared/functions/useLocationBlocker";
+
+import Toppage from "./Toppage";
+import BookList from "./books/BookList";
+import CreateBook from "./books/CreateBook";
 
 const styles = (theme) => ({
   wrapper: {
@@ -43,43 +46,28 @@ const styles = (theme) => ({
 });
 
 function Routing(props) {
-  const {
-    classes,
-    EmojiTextArea,
-    ImageCropper,
-    Dropzone,
-    DateTimePicker,
-    pushMessageToSnackbar,
-    posts,
-    transactions,
-    toggleAccountActivation,
-    CardChart,
-    statistics,
-    targets,
-    setTargets,
-    setPosts,
-    isAccountActivated,
-    selectToppage,
-    selectPosts,
-    selectSubscription,
-    openAddBalanceDialog,
-  } = props;
+  const { classes, selectToppage, selectBookList, selectCreateBook } = props;
   useLocationBlocker();
   return (
     <div className={classes.wrapper}>
+      {/* <Route path="/c/toppage" component={Toppage} />
+      <Route path="/c/createbook" component={CreateBook} />
+      <Route path="/c/booklist" component={BookList} /> */}
       <Switch>
-        {/* <PropsRoute
-          path=""
+        <PropsRoute
+          path="/c/toppage"
           component={Toppage}
-          targets={targets}
-          setTargets={setTargets}
           selectToppage={selectToppage}
-        /> */}
+        />
         <PropsRoute
           path="/c/booklist"
           component={BookList}
-          transactions={transactions}
-          pushMessageToSnackbar={pushMessageToSnackbar}
+          selectBookList={selectBookList}
+        />
+        <PropsRoute
+          path="/c/createbook"
+          component={CreateBook}
+          selectCreateBook={selectCreateBook}
         />
       </Switch>
     </div>
@@ -88,24 +76,9 @@ function Routing(props) {
 
 Routing.propTypes = {
   classes: PropTypes.object.isRequired,
-  EmojiTextArea: PropTypes.elementType,
-  ImageCropper: PropTypes.elementType,
-  Dropzone: PropTypes.elementType,
-  DateTimePicker: PropTypes.elementType,
-  pushMessageToSnackbar: PropTypes.func,
-  setTargets: PropTypes.func.isRequired,
-  setPosts: PropTypes.func.isRequired,
-  posts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
-  toggleAccountActivation: PropTypes.func,
-  CardChart: PropTypes.elementType,
-  statistics: PropTypes.object.isRequired,
-  targets: PropTypes.arrayOf(PropTypes.object).isRequired,
-  isAccountActivated: PropTypes.bool.isRequired,
   selectToppage: PropTypes.func.isRequired,
-  selectPosts: PropTypes.func.isRequired,
-  selectSubscription: PropTypes.func.isRequired,
-  openAddBalanceDialog: PropTypes.func.isRequired,
+  selectBookList: PropTypes.func.isRequired,
+  selectCreateBook: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(memo(Routing));
