@@ -122,13 +122,14 @@ const styles = (theme) => ({
   },
 });
 
-function NavBar(props) {
+const NavBar = (props) => {
   const { selectedTab, classes, theme } = props;
   // Will be use to make website more accessible by screen readers
   const links = useRef([]);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
   const isWidthUpSm = useMediaQuery(theme.breakpoints.up("sm"));
+  const currentUser = localStorage.getItem("loggedInUsername");
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);
@@ -145,6 +146,11 @@ function NavBar(props) {
   const closeDrawer = useCallback(() => {
     setIsSideDrawerOpen(false);
   }, [setIsSideDrawerOpen]);
+
+  const logoutClick = useCallback(() => {
+    window.localStorage.removeItem("loggedInUsername");
+    console.log("Logged Out:", window.localStorage.getItem("loggedInUsername"));
+  }, []);
 
   const menuItems = [
     {
@@ -198,6 +204,7 @@ function NavBar(props) {
     {
       link: "/",
       name: "Logout",
+      onClick: logoutClick,
       icon: {
         desktop: (
           <PowerSettingsNewIcon className="text-white" fontSize="small" />
@@ -257,7 +264,7 @@ function NavBar(props) {
                 <ListItemText
                   className={classes.username}
                   primary={
-                    <Typography color="textPrimary">Username</Typography>
+                    <Typography color="textPrimary">{currentUser}</Typography>
                   }
                 />
               )}
@@ -336,7 +343,7 @@ function NavBar(props) {
       />
     </Fragment>
   );
-}
+};
 
 NavBar.propTypes = {
   selectedTab: PropTypes.string,

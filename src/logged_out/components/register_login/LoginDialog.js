@@ -15,6 +15,8 @@ import HighlightedInformation from "../../../shared/components/HighlightedInform
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 
+import dummyUser from "../../../shared/dummy_data/dummyUser.json";
+
 const styles = (theme) => ({
   forgotPassword: {
     marginTop: theme.spacing(2),
@@ -53,17 +55,47 @@ function LoginDialog(props) {
   const login = useCallback(() => {
     setIsLoading(true);
     setStatus(null);
-    if (loginUsername.current.value !== "test") {
+    const inputUsername = loginUsername.current.value;
+    const inputPassword = loginPassword.current.value;
+
+    // ユーザー名が存在するかどうかをチェック
+    const userExists = dummyUser.users.some(
+      (user) => user.username === inputUsername
+    );
+
+    // ユーザー名が存在する場合、そのユーザーのパスワードをチェック
+    const passwordCorrect =
+      userExists &&
+      dummyUser.users.some(
+        (user) =>
+          user.username === inputUsername && user.password === inputPassword
+      );
+
+    // 本のIDを取得する
+    const bookId = dummyUser.users.find(
+      (user) => user.username === inputUsername
+    ).bookId;
+
+    // ユーザー名が無効な場合
+    if (!userExists) {
       setTimeout(() => {
         setStatus("invalidUsername");
         setIsLoading(false);
       }, 1500);
-    } else if (loginPassword.current.value !== "test") {
+    }
+    // パスワードが無効な場合
+    else if (!passwordCorrect) {
       setTimeout(() => {
         setStatus("invalidPassword");
         setIsLoading(false);
       }, 1500);
-    } else {
+    }
+    // ユーザー名とパスワードが正しい場合
+    else {
+      localStorage.setItem("loggedInUsername", inputUsername);
+      localStorage.setItem("userBookId", bookId);
+      console.log("Logged In:", localStorage.getItem("loggedInUsername"));
+      console.log("User BookId:", localStorage.getItem("userBookId"));
       setTimeout(() => {
         history.push("/c/toppage");
       }, 150);

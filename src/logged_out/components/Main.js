@@ -65,6 +65,7 @@ const Main = (props) => {
         handleMobileDrawerOpen={handleMobileDrawerOpen}
         handleMobileDrawerClose={handleMobileDrawerClose}
       />
+      <div>Merry Christmas</div>
     </div>
   );
 };

@@ -50,9 +50,6 @@ function Routing(props) {
   useLocationBlocker();
   return (
     <div className={classes.wrapper}>
-      {/* <Route path="/c/toppage" component={Toppage} />
-      <Route path="/c/createbook" component={CreateBook} />
-      <Route path="/c/booklist" component={BookList} /> */}
       <Switch>
         <PropsRoute
           path="/c/toppage"
