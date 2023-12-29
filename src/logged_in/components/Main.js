@@ -36,6 +36,11 @@ const Main = (props) => {
     setSelectedTab("BookList");
   }, [setSelectedTab]);
 
+  const selectBookViewer = useCallback(() => {
+    document.title = "BookViewer";
+    setSelectedTab("BookViewer");
+  }, [setSelectedTab]);
+
   const selectCreateBook = useCallback(() => {
     document.title = "CreateBook";
     setSelectedTab("CreateBook");
@@ -48,6 +53,7 @@ const Main = (props) => {
         <Routing
           selectToppage={selectToppage}
           selectBookList={selectBookList}
+          selectBookViewer={selectBookViewer}
           selectCreateBook={selectCreateBook}
         />
       </main>

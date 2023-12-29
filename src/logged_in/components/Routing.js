@@ -8,6 +8,7 @@ import useLocationBlocker from "../../shared/functions/useLocationBlocker";
 
 import Toppage from "./Toppage";
 import BookList from "./books/BookList";
+import BookViewer from "./books/BookViewer";
 import CreateBook from "./books/CreateBook";
 
 const styles = (theme) => ({
@@ -46,7 +47,13 @@ const styles = (theme) => ({
 });
 
 function Routing(props) {
-  const { classes, selectToppage, selectBookList, selectCreateBook } = props;
+  const {
+    classes,
+    selectToppage,
+    selectBookList,
+    selectBookViewer,
+    selectCreateBook,
+  } = props;
   useLocationBlocker();
   return (
     <div className={classes.wrapper}>
@@ -62,6 +69,11 @@ function Routing(props) {
           selectBookList={selectBookList}
         />
         <PropsRoute
+          path="/c/bookviewer/*"
+          component={BookViewer}
+          selectBookViewer={selectBookViewer}
+        />
+        <PropsRoute
           path="/c/createbook"
           component={CreateBook}
           selectCreateBook={selectCreateBook}
@@ -75,6 +87,7 @@ Routing.propTypes = {
   classes: PropTypes.object.isRequired,
   selectToppage: PropTypes.func.isRequired,
   selectBookList: PropTypes.func.isRequired,
+  selectBookViewer: PropTypes.func.isRequired,
   selectCreateBook: PropTypes.func.isRequired,
 };
 

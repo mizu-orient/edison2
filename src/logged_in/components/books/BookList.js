@@ -10,8 +10,6 @@ import BookDataHandler from "./BookDataHandler";
 import nobooks from "./images/nobooks.png";
 import defaultCover from "./images/notavailable.png";
 
-import dummyUser from "../../../shared/dummy_data/dummyUser.json";
-
 const BookList = (props) => {
   const { selectBookList } = props;
   const [currentUser, setCurrentUser] = useState(
@@ -78,24 +76,6 @@ const BookList = (props) => {
   const [currentIndex, setCurrentIndex] = useState(-1);
   const [searchTitle, setSearchTitle] = useState("");
 
-  const getRows = (books) => {
-    const rows = [];
-    console.log("length", books);
-    books.map((book) => {
-      rows.push({
-        book: <Book image={defaultCover} title={book.title} />,
-        available: (
-          <Badge
-            variant="dot"
-            color={book.available ? "primary" : "secondary"}
-            badgeContent={book.available ? "available" : "lent"}
-          />
-        ),
-      });
-    });
-    return rows;
-  };
-
   const removeAllBooks = () => {
     console.log("TBD:removeAllBooks");
   };
@@ -107,19 +87,25 @@ const BookList = (props) => {
   };
 
   // Book コンポーネントの定義
-  const Book = ({ image, title, sentence }) => {
+  const Book = ({ id, image, title, sentence }) => {
     return (
-      <Box display="flex" alignItems="center" px={10} py={1.5}>
-        <Box mr={2}>
-          <Avatar src={image} alt={title} variant="rounded" />
+      <Link
+        to={`/c/bookviewer/${id}`}
+        state={{ id: id }}
+        style={{ textDecoration: "none" }}
+      >
+        <Box display="flex" alignItems="center" px={10} py={1.5}>
+          <Box mr={2}>
+            <Avatar src={image} alt={title} variant="rounded" />
+          </Box>
+          <Box display="flex" flexDirection="column">
+            <Typography variant="button" fontWeight="medium">
+              {title}
+            </Typography>
+            <Typography variant="body2">{sentence}</Typography>
+          </Box>
         </Box>
-        <Box display="flex" flexDirection="column">
-          <Typography variant="button" fontWeight="medium">
-            {title}
-          </Typography>
-          <Typography variant="body2">{sentence}</Typography>
-        </Box>
-      </Box>
+      </Link>
     );
   };
 
@@ -146,6 +132,7 @@ const BookList = (props) => {
               {books.map((book, index) => (
                 <Book
                   key={index}
+                  id={book.id}
                   image={book.image}
                   title={book.name}
                   sentence={book.sentence}
