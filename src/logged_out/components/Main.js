@@ -50,23 +50,25 @@ const Main = (props) => {
   }, [setIsMobileDrawerOpen]);
 
   return (
-    <div className={classes.wrapper}>
-      <DialogSelector
-        dialogOpen={dialogOpen}
-        openLoginDialog={openLoginDialog}
-        openChangePasswordDialog={openChangePasswordDialog}
-        onClose={closeDialog}
-      />
-      <NavBar
-        selectedTab={selectedTab}
-        selectTab={setSelectedTab}
-        openLoginDialog={openLoginDialog}
-        mobileDrawerOpen={isMobileDrawerOpen}
-        handleMobileDrawerOpen={handleMobileDrawerOpen}
-        handleMobileDrawerClose={handleMobileDrawerClose}
-      />
-      <div>Merry Christmas</div>
-    </div>
+    <Fragment>
+      <div className={classes.wrapper}>
+        <DialogSelector
+          dialogOpen={dialogOpen}
+          openLoginDialog={openLoginDialog}
+          openChangePasswordDialog={openChangePasswordDialog}
+          onClose={closeDialog}
+        />
+        <NavBar
+          selectedTab={selectedTab}
+          selectTab={setSelectedTab}
+          openLoginDialog={openLoginDialog}
+          mobileDrawerOpen={isMobileDrawerOpen}
+          handleMobileDrawerOpen={handleMobileDrawerOpen}
+          handleMobileDrawerClose={handleMobileDrawerClose}
+        />
+        <div>Merry Christmas</div>
+      </div>
+    </Fragment>
   );
 };
 

@@ -10,45 +10,21 @@ import BookDataHandler from "./BookDataHandler";
 import nobooks from "./images/nobooks.png";
 import defaultCover from "./images/notavailable.png";
 
+/* TBD */
+import dummyBooks from "../../../shared/dummy_data/dummyBooks.json";
+import dummyBookIdOfUser from "../../../shared/dummy_data/dummyBookIdOfUser.json";
+
 const BookList = (props) => {
   const { selectBookList } = props;
   const [currentUser, setCurrentUser] = useState(
-    localStorage.getItem("loggedInUsername")
+    localStorage.getItem("loggedInMailAddress")
   );
-
-  const [bookId, setBookId] = useState(localStorage.getItem("userBookId"));
-
-  console.log("BookList:", currentUser);
-
-  const dummyBooks = [
-    {
-      id: 1,
-      name: "Momo Taro",
-      sentence: "This is the first book",
-      image: defaultCover,
-    },
-    {
-      id: 2,
-      name: "Kaguya Hime",
-      sentence: "This is the second book",
-      image: defaultCover,
-    },
-    {
-      id: 3,
-      name: "Peach Taro",
-      sentence: "This is the third book",
-      image: defaultCover,
-    },
-    {
-      id: 4,
-      name: "Momo Taro 2nd",
-      sentence: "This is the fourth book",
-      image: defaultCover,
-    },
-    // 他のダミーデータもここに追加
-  ];
-
   const [books, setBooks] = useState([]);
+
+  /* TBD */
+  const bookIdList = dummyBookIdOfUser.find(
+    (user) => user.id === Number(localStorage.getItem("currentId"))
+  ).bookIdList;
 
   useEffect(() => {
     selectBookList();
@@ -56,9 +32,8 @@ const BookList = (props) => {
   }, [selectBookList]);
 
   const retrieveBooks = () => {
-    const bookIds = bookId ? bookId.split(",").map(Number) : [];
     const selectedBooks = dummyBooks.filter((book) =>
-      bookIds.includes(book.id)
+      bookIdList.includes(book.bookId)
     );
     setBooks(selectedBooks);
     console.log("Books retrieved!: ", selectedBooks);
@@ -86,23 +61,28 @@ const BookList = (props) => {
     console.log("TBD:searchByTitle");
   };
 
+  const redirectToBook = (bookId) => {
+    console.log("Redirect to ", bookId);
+    localStorage.setItem("currentBookId", bookId ? bookId : 0);
+  };
+
   // Book コンポーネントの定義
-  const Book = ({ id, image, title, sentence }) => {
+  const Book = ({ bookId, coverImage, title, description }) => {
     return (
       <Link
-        to={`/c/bookviewer/${id}`}
-        state={{ id: id }}
+        to={`/c/bookviewer/${bookId}`}
         style={{ textDecoration: "none" }}
+        onClick={() => redirectToBook(bookId)}
       >
         <Box display="flex" alignItems="center" px={10} py={1.5}>
           <Box mr={2}>
-            <Avatar src={image} alt={title} variant="rounded" />
+            <Avatar src={coverImage} alt={title} variant="rounded" />
           </Box>
           <Box display="flex" flexDirection="column">
             <Typography variant="button" fontWeight="medium">
               {title}
             </Typography>
-            <Typography variant="body2">{sentence}</Typography>
+            <Typography variant="body2">{description}</Typography>
           </Box>
         </Box>
       </Link>
@@ -110,9 +90,9 @@ const BookList = (props) => {
   };
 
   Book.propTypes = {
-    image: PropTypes.string.isRequired,
+    coverImage: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    sentence: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
   };
 
   return (
@@ -132,10 +112,10 @@ const BookList = (props) => {
               {books.map((book, index) => (
                 <Book
                   key={index}
-                  id={book.id}
-                  image={book.image}
+                  bookId={book.bookId}
+                  coverImage={book.coverImage ? book.coverImage : defaultCover}
                   title={book.name}
-                  sentence={book.sentence}
+                  description={book.description}
                 />
               ))}
             </Card>

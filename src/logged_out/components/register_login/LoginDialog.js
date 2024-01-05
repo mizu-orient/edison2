@@ -15,7 +15,7 @@ import HighlightedInformation from "../../../shared/components/HighlightedInform
 import ButtonCircularProgress from "../../../shared/components/ButtonCircularProgress";
 import VisibilityPasswordTextField from "../../../shared/components/VisibilityPasswordTextField";
 
-import dummyUser from "../../../shared/dummy_data/dummyUser.json";
+import dummyUser from "../../../shared/dummy_data/dummyUsersForLogin.json";
 
 const styles = (theme) => ({
   forgotPassword: {
@@ -49,18 +49,18 @@ function LoginDialog(props) {
   } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const loginUsername = useRef();
+  const loginMailAddress = useRef();
   const loginPassword = useRef();
 
   const login = useCallback(() => {
     setIsLoading(true);
     setStatus(null);
-    const inputUsername = loginUsername.current.value;
+    const inputMailAddress = loginMailAddress.current.value;
     const inputPassword = loginPassword.current.value;
 
     // ユーザー名が存在するかどうかをチェック
     const userExists = dummyUser.users.some(
-      (user) => user.username === inputUsername
+      (user) => user.mailAddress === inputMailAddress
     );
 
     // ユーザー名が存在する場合、そのユーザーのパスワードをチェック
@@ -68,18 +68,14 @@ function LoginDialog(props) {
       userExists &&
       dummyUser.users.some(
         (user) =>
-          user.username === inputUsername && user.password === inputPassword
+          user.mailAddress === inputMailAddress &&
+          user.password === inputPassword
       );
-
-    // 本のIDを取得する
-    const bookId = dummyUser.users.find(
-      (user) => user.username === inputUsername
-    ).bookId;
 
     // ユーザー名が無効な場合
     if (!userExists) {
       setTimeout(() => {
-        setStatus("invalidUsername");
+        setStatus("invalidMailAddress");
         setIsLoading(false);
       }, 1500);
     }
@@ -92,15 +88,13 @@ function LoginDialog(props) {
     }
     // ユーザー名とパスワードが正しい場合
     else {
-      localStorage.setItem("loggedInUsername", inputUsername);
-      localStorage.setItem("userBookId", bookId);
-      console.log("Logged In:", localStorage.getItem("loggedInUsername"));
-      console.log("User BookId:", localStorage.getItem("userBookId"));
+      localStorage.setItem("loggedInMailAddress", inputMailAddress);
+      console.log("Logged In:", localStorage.getItem("loggedInMailAddress"));
       setTimeout(() => {
         history.push("/c/toppage");
       }, 150);
     }
-  }, [setIsLoading, loginUsername, loginPassword, history, setStatus]);
+  }, [setIsLoading, loginMailAddress, loginPassword, history, setStatus]);
 
   return (
     <Fragment>
@@ -119,21 +113,22 @@ function LoginDialog(props) {
             <TextField
               variant="outlined"
               margin="normal"
-              error={status === "invalidUsername"}
+              error={status === "invalidMailAddress"}
               required
               fullWidth
-              label="Username"
-              inputRef={loginUsername}
+              label="MailAddress"
+              inputRef={loginMailAddress}
               autoFocus
               autoComplete="off"
               type="text"
               onChange={() => {
-                if (status === "invalidUsername") {
+                if (status === "invalidMailAddress") {
                   setStatus(null);
                 }
               }}
               helperText={
-                status === "invalidUsername" && "This username does not exist"
+                status === "invalidMailAddress" &&
+                "This Mail Address does not exist"
               }
               FormHelperTextProps={{ error: true }}
             />
@@ -170,14 +165,14 @@ function LoginDialog(props) {
               control={<Checkbox color="primary" />}
               label={<Typography variant="body1">Remember me</Typography>}
             />
-            {status === "verificationUsernameSend" ? (
+            {status === "verificationMailAddressSend" ? (
               <HighlightedInformation>
                 We have send instructions on how to reset your password to your
-                username
+                Mail Address
               </HighlightedInformation>
             ) : (
               <HighlightedInformation>
-                Username is: <b>test</b>
+                Mail Address is: <b>test@test</b>
                 <br />
                 Password is: <b>test</b>
               </HighlightedInformation>

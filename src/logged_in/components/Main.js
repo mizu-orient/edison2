@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import Routing from "./Routing";
 import NavBar from "./navigation/NavBar";
 
+import dummyUsers from "../../shared/dummy_data/dummyUsers.json";
+
 const styles = (theme) => ({
   main: {
     marginLeft: theme.spacing(9),
@@ -23,8 +25,19 @@ const Main = (props) => {
   const { classes } = props;
   const [selectedTab, setSelectedTab] = useState("");
 
-  // TBD:本の取得確認
-  const [hasFetchBooks, setHasFetchBooks] = useState(false);
+  const user = dummyUsers.users.find(
+    (user) => user.mailAddress === localStorage.getItem("loggedInMailAddress")
+  );
+
+  useEffect(() => {
+    setUserData();
+  }, []);
+
+  const setUserData = () => {
+    localStorage.setItem("currentMailAddress", user.mailAddress);
+    localStorage.setItem("currentUsername", user.username);
+    localStorage.setItem("currentId", user.id);
+  };
 
   const selectToppage = useCallback(() => {
     document.title = "Toppage";
@@ -38,7 +51,7 @@ const Main = (props) => {
 
   const selectBookViewer = useCallback(() => {
     document.title = "BookViewer";
-    setSelectedTab("BookViewer");
+    setSelectedTab("BookList");
   }, [setSelectedTab]);
 
   const selectCreateBook = useCallback(() => {

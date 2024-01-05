@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "mailAddress": "test@test",
+      "username": "test",
+      "id": 1
+    },
+    {
+      "mailAddress": "mizusaki@mizusaki",
+      "username": null,
+      "id": 2
+    },
+    {
+      "mailAddress": "dummy@dummy",
+      "username": "dummy",
+      "id": 3
+    }
+  ]
+}

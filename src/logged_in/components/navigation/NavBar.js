@@ -129,7 +129,10 @@ const NavBar = (props) => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isSideDrawerOpen, setIsSideDrawerOpen] = useState(false);
   const isWidthUpSm = useMediaQuery(theme.breakpoints.up("sm"));
-  const currentUser = localStorage.getItem("loggedInUsername");
+  const currentUser =
+    localStorage.getItem("currentUsername") !== "null"
+      ? localStorage.getItem("currentUsername")
+      : localStorage.getItem("currentMailAddress");
 
   const openMobileDrawer = useCallback(() => {
     setIsMobileOpen(true);

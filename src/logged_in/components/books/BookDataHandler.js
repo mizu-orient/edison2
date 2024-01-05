@@ -1,4 +1,4 @@
-import booksData from "../../dummy_data/books.json";
+import booksData from "../../../shared/dummy_data/dummyBooks.json";
 
 class BookDataHandler {
   getAll() {
