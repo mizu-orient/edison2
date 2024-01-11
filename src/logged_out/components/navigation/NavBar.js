@@ -12,7 +12,6 @@ import {
 import withStyles from "@mui/styles/withStyles";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
-import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import BookIcon from "@mui/icons-material/Book";
 import NavigationDrawer from "../../../shared/components/NavigationDrawer";
@@ -55,8 +54,13 @@ const NavBar = (props) => {
       icon: <HomeIcon className="text-white" />,
     },
     {
-      link: "/books",
-      name: "Books",
+      link: "/about",
+      name: "About",
+      icon: <BookIcon className="text-white" />,
+    },
+    {
+      link: "/information",
+      name: "Information",
       icon: <BookIcon className="text-white" />,
     },
     {
@@ -67,7 +71,7 @@ const NavBar = (props) => {
   ];
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="static" className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <div>
             <Typography

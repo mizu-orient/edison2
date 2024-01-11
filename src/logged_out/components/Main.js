@@ -1,8 +1,11 @@
-import React, { memo, useCallback, useEffect, useState, Fragment } from "react";
+import React, { memo, useCallback, useState, Fragment } from "react";
+import { Switch, Route } from "react-router-dom";
 import withStyles from "@mui/styles/withStyles";
+import classNames from "classnames";
 
 import NavBar from "./navigation/NavBar";
 import DialogSelector from "./register_login/DialogSelector";
+import Routing from "./Routing";
 
 const styles = (theme) => ({
   main: {
@@ -66,7 +69,9 @@ const Main = (props) => {
           handleMobileDrawerOpen={handleMobileDrawerOpen}
           handleMobileDrawerClose={handleMobileDrawerClose}
         />
-        <div>Merry Christmas</div>
+        <main className={classNames(classes.main)}>
+          <Routing />
+        </main>
       </div>
     </Fragment>
   );
