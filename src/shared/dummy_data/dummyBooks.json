@@ -1,8 +1,9 @@
 [
   {
     "bookId": 1,
-    "name": "Momo Taro",
+    "title": "Momo Taro",
     "description": "みんな大好き桃太郎",
+    "ratio": 1.5,
     "bucket": null,
     "coverImage": "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
     "dummyImages": [
@@ -12,31 +13,41 @@
   },
   {
     "bookId": 2,
-    "name": "Kaguya Hime",
+    "title": "Kaguya Hime",
     "description": "Kaguya Man",
+    "ratio": 5,
     "bucket": null,
     "coverImage": null,
-    "dummyImages": null
+    "dummyImages": [
+      "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+      "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
+    ]
   },
   {
     "bookId": 3,
-    "name": "Peach Taro",
+    "title": "Peach Taro",
     "description": "みんな大好き桃太郎",
+    "ratio": 3,
     "bucket": null,
-    "dummyImages": null
+    "dummyImages": [
+      "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+      "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
+    ]
   },
   {
     "bookId": 4,
-    "name": "Momo Taro 2nd",
+    "title": "Momo Taro 2nd",
     "description": "みんな大好き桃太郎2nd",
+    "ratio": 0.2,
     "bucket": null,
     "coverImage": null,
     "dummyImages": null
   },
   {
     "bookId": 5,
-    "name": "Devil Man",
+    "title": "Devil Man",
     "description": "サタンだからな",
+    "ratio": 0,
     "bucket": null,
     "coverImage": "https://cache2-ebookjapan.akamaized.net/contents/thumb/s/DEVIL160.jpg",
     "dummyImages": [
