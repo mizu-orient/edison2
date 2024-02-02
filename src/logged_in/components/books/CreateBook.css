@@ -1,3 +1,9 @@
+.book-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
 .book-card {
   display: flex;
   align-items: center;
@@ -8,7 +14,7 @@
 }
 
 .book-card img {
-  width: 180px; /* 画像の幅を固定する */
+  width: 100%; /* 画像の幅を固定する */
   height: auto;
 }
 

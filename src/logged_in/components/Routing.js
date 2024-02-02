@@ -53,6 +53,7 @@ function Routing(props) {
     selectBookList,
     selectBookViewer,
     selectCreateBook,
+    bookId,
   } = props;
   useLocationBlocker();
   return (
@@ -72,6 +73,7 @@ function Routing(props) {
           path="/c/bookviewer/*"
           component={BookViewer}
           selectBookViewer={selectBookViewer}
+          bookId={bookId}
         />
         <PropsRoute
           path="/c/createbook"

@@ -1,31 +1,36 @@
 [
   {
-    "bookId": 1,
-    "title": "Momo Taro",
-    "description": "みんな大好き桃太郎",
+    "style": "comic",
+    "bookId": "marriage_of_a_mouse",
+    "title": "ねずみの嫁入り",
+    "description": "ねずみかわいい",
     "ratio": 1.5,
     "bucket": null,
     "coverImage": "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
     "dummyImages": [
       "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
       "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
-    ]
+    ],
+    "dummyText": ["今日は１", "devilman", "i love"]
   },
   {
-    "bookId": 2,
-    "title": "Kaguya Hime",
-    "description": "Kaguya Man",
+    "style": "comic",
+    "bookId": "momotaro",
+    "title": "桃太郎",
+    "description": "",
     "ratio": 5,
     "bucket": null,
     "coverImage": null,
     "dummyImages": [
       "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
       "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
-    ]
+    ],
+    "dummyText": ["今日は１", "devilman", "i love"]
   },
   {
-    "bookId": 3,
-    "title": "Peach Taro",
+    "style": "comic",
+    "bookId": "akazukin",
+    "title": "赤ずきん",
     "description": "みんな大好き桃太郎",
     "ratio": 3,
     "bucket": null,
@@ -35,23 +40,14 @@
     ]
   },
   {
-    "bookId": 4,
-    "title": "Momo Taro 2nd",
-    "description": "みんな大好き桃太郎2nd",
+    "style": "comic",
+    "bookId": "urashima",
+    "title": "浦島太郎",
+    "description": "",
     "ratio": 0.2,
     "bucket": null,
     "coverImage": null,
-    "dummyImages": null
-  },
-  {
-    "bookId": 5,
-    "title": "Devil Man",
-    "description": "サタンだからな",
-    "ratio": 0,
-    "bucket": null,
-    "coverImage": "https://cache2-ebookjapan.akamaized.net/contents/thumb/s/DEVIL160.jpg",
-    "dummyImages": [
-      "https://cache2-ebookjapan.akamaized.net/contents/thumb/s/DEVIL160.jpg"
-    ]
+    "dummyImages": null,
+    "dummyText": ["今日は１", "devilman", "i love"]
   }
 ]

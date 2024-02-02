@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "bookIdList": [1, 2, 3, 4, 5]
+    "bookIdList": ["marriage_of_a_mouse", "momotaro", "akazukin", "urashima"]
   },
   {
     "id": 2,
-    "bookIdList": [1, 3, 5]
+    "bookIdList": ["momotaro", "akazukin", "urashima"]
   },
   {
     "id": 3,

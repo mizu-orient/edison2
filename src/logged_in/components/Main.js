@@ -59,6 +59,8 @@ const Main = (props) => {
     setSelectedTab("CreateBook");
   }, [setSelectedTab]);
 
+  let bookId = 0;
+
   return (
     <Fragment>
       <NavBar selectedTab={selectedTab} />
@@ -68,6 +70,7 @@ const Main = (props) => {
           selectBookList={selectBookList}
           selectBookViewer={selectBookViewer}
           selectCreateBook={selectCreateBook}
+          bookId={bookId}
         />
       </main>
     </Fragment>

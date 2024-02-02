@@ -114,7 +114,7 @@ const BookList = (props) => {
                   key={index}
                   bookId={book.bookId}
                   coverImage={book.coverImage ? book.coverImage : defaultCover}
-                  title={book.name}
+                  title={book.title}
                   description={book.description}
                 />
               ))}
