@@ -1,42 +1,71 @@
-[**Check out the demo**](https://reactsaastemplate.com)
+<img src="./src/assets/circles.png" height="250px" align="right"/>
 
-## Getting Started
+<h1 align="center">BOOK Ecommerce STORE USING REACTJS </h1>
 
-Fork From https://github.com/dunky11/react-saas-template
 
-### Installing
+# BOOK Shop Description
+    Book Shop is an online React web application where the customer can purchase books online.
+    Through this book store the users can search for a book by its title and
+    later can add to the shopping cart and finally purchase using credit card transaction.
+    
+ ##   [Live App Demo](https://akshatbookstore.netlify.app/)
+ 
+ 
+ ![Alt text](https://github.com/Akshatjalan/Book-store-Reactjs/blob/main/src/assets/Web.jpg?raw=true "Main Page")
 
-1. Clone the repository
+# Tools Used
 
-   ```
-   git clone https://github.com/dunky11/react-saas-template
-   ```
+- Build with `ReactJS`, `Javascript`, `HTML`, `CSS`.
+- `CommerceJS` provides Backend eCommerce APIs for any frontend framework
+- `Stripe` is used as a suite of payment APIs that powers commerce and provides temporary credit card for payment.
+- https://commercejs.com/docs/guides/products-react/ Documentation of CommerceJS to fetch APIs
+- https://stripe.com/docs/stripe-js/react Documentation to connect Stripe with React components for Stripe.js and Stripe Elements
 
-2. Install dependencies, this can take a minute
 
-   ```
-   cd react-saas-template
-   npm install
-   ```
+# Installation 
 
-3. Start the local server
+### `npm start`
 
-   ```
-   npm start
-   ```
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-Your browser should now open and show the app. Otherwise open http://localhost:3000/ in your browser. Editing files will automatically refresh the page.
+The page will reload if you make edits.<br>
 
-## Deployment
+### `npm test`
 
-If you are satisfied with the state of your website you can run:
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](#running-tests) for more information.
 
-```
-npm run build
-```
+### `npm run build`
 
-It will create a folder named build with your compiled project inside. After that copy its content into your webroot and you are ready to go.
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-## License
+The build is minified and the filenames include the hashes.<br>
+The app is ready to be deployed!
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/dunky11/react-saas-template/blob/master/LICENSE) file for details.
+See the section about [deployment](#deployment) for more information.
+
+## Contact 
+ <h3 align="center">
+  <code> Akshat Jalan </code>
+</h3>
+  <p align="center"> 
+
+  <a href="https://github.com/Akshatjalan">
+    <img src="https://github.com/Akshatjalan/akshat/blob/master/Color/Github.svg" width="30" height="30" hspace="20">
+  </a>
+
+  <a href="https://www.linkedin.com/in/akshat-jalan/">
+    <img src="https://github.com/Akshatjalan/akshat/blob/master/Color/LinkedIN.svg" width="30" height="30" hspace="20">
+  </a>
+
+  <a href="https://www.instagram.com/akshatxjalan/">
+    <img src="https://github.com/Akshatjalan/akshat/blob/master/Color/Instagram.svg" width="30" height="30" hspace="20">
+  </a>
+    <a href="mailto:jalanakshat2@gmail.com">
+    <img src="https://github.com/Akshatjalan/akshat/blob/master/Color/Gmail.svg"  width="30" height="30" hspace="20">
+  </a>
+
+</p>
+
