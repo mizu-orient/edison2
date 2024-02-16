@@ -13,6 +13,7 @@ import bioBg from "../../assets/ehon.png";
 import fictionBg from "../../assets/fiction.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
+import defaultCover from "../../assets/notavailable.png";
 
 const Products = ({ products, onAddToCart, featureProducts }) => {
   const classes = useStyles();
@@ -168,7 +169,7 @@ const Products = ({ products, onAddToCart, featureProducts }) => {
               <Card>
                 <CardMedia
                   style={{ height: 0, paddingTop: "56.25%" }}
-                  image={product.coverImage}
+                  image={product.coverImage ? product.coverImage : defaultCover}
                   title={product.title}
                 />
                 <CardContent>
@@ -206,7 +207,9 @@ const Products = ({ products, onAddToCart, featureProducts }) => {
                   <Card>
                     <CardMedia
                       style={{ height: 0, paddingTop: "56.25%" }}
-                      image={product.coverImage}
+                      image={
+                        product.coverImage ? product.coverImage : defaultCover
+                      }
                       title={product.title}
                     />
                     <CardContent>
