@@ -1,0 +1,61 @@
+
+.app {
+  font-family: sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-button {
+  position: fixed;
+  top: 1vh;
+  left: 1vw;
+  background: #f37272;
+  border: none;
+  color: white;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 100; /* メニューボタンが常に最前面に来るようにz-indexを高く設定 */
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px; /* サイドバーの幅 */
+  height: 100vh; /* 高さはビューポートの100% */
+  background: #333;
+  transition: transform 0.3s ease;
+  transform-origin: top left; /* 回転の軸を左上に設定 */
+  transform: translateX(-100%) rotate(0deg); /* 初期状態は非表示で回転なし */
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.sidebar.open {
+  transform: translateX(0) rotate(-20deg); /* 開いた時に回転 */
+  height: 100vh; /* サイドバーの高さをビューポートの100%に */
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: white;
+  position: absolute;
+  top: 50%; /* 上下中央に配置 */
+  right: 0; /* 右端からの位置に配置 */
+  transform: translateY(-50%) rotate(20deg); /* サイドバーに合わせて回転 */
+  text-align: right; /* メニューアイテムを右揃えに */
+  width: 100%; /* メニューアイテムの幅をサイドバーいっぱいに */
+  z-index: 2; /* メニューアイテムがサイドバーの上に表示されるようにz-indexを設定 */
+}
+
+.menu-items li {
+  padding: 1rem 2rem 1rem 0; /* 右側に余白を追加 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 境界線を追加 */
+}
+
+.content {
+  padding: 1rem;
+}

@@ -1,0 +1,62 @@
+.app {
+  font-family: sans-serif;
+  position: relative;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+/* サイドバーの基本スタイル */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: #8b4513; /* サイドバーの背景色を茶色に設定 */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  transition: transform 0.3s ease; /* アニメーションの速度を設定 */
+  transform-origin: top left; /* 回転の軸を左上に設定 */
+  transform: rotateY(-90deg); /* 初期状態ではサイドバーが非表示 */
+}
+
+/* サイドバーが開いている状態 */
+.sidebar.open {
+  transform: rotateY(0deg); /* サイドバーが正面から見えるように回転 */
+}
+
+.menu-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  text-align: left;
+  width: 100%;
+}
+
+.menu-button {
+  position: fixed;
+  top: 0.5vh;
+  left: 1vw;
+  background: inherit;
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  z-index: 100;
+}
+
+.menu-items li {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.content {
+  padding: 1rem;
+}

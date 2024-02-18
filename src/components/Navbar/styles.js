@@ -12,6 +12,7 @@ export default makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
+    zIndex: 10,
   },
   title: {
     flexGrow: 1,

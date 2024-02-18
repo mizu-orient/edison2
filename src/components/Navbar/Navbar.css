@@ -1,0 +1,11 @@
+/* 画面幅が600px以下の場合に適用されるスタイル */
+@media (max-width: 950px) {
+  .hide-on-small {
+    display: none; /* 小さい画面で非表示にする要素 */
+  }
+  .image-only {
+    display: block; /* 画像のみ表示 */
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

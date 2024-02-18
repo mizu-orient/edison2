@@ -49,17 +49,17 @@ const NavBar = (props) => {
   } = props;
   const menuItems = [
     {
-      link: "/",
+      link: "/c",
       name: "Home",
       icon: <HomeIcon className="text-white" />,
     },
     {
-      link: "/about",
+      link: "/c/about",
       name: "About",
       icon: <BookIcon className="text-white" />,
     },
     {
-      link: "/information",
+      link: "/c/information",
       name: "Information",
       icon: <BookIcon className="text-white" />,
     },

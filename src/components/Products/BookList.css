@@ -1,0 +1,66 @@
+/* body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+} */
+
+.book-menu {
+  display: flex;
+  gap: 20px;
+}
+
+.book-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.book-card img {
+  width: 100px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.book-card h3 {
+  margin: 10px 0;
+}
+
+.rating,
+.price {
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.temperature-options {
+  margin: 10px 0;
+}
+
+.temperature-option {
+  padding: 5px 20px;
+  margin-right: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.temperature-option.active {
+  background-color: orange;
+  color: white;
+}
+
+.add-to-cart {
+  padding: 10px 20px;
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

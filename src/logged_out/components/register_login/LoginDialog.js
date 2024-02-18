@@ -91,7 +91,7 @@ function LoginDialog(props) {
       localStorage.setItem("loggedInMailAddress", inputMailAddress);
       console.log("Logged In:", localStorage.getItem("loggedInMailAddress"));
       setTimeout(() => {
-        history.push("/c/toppage");
+        history.push("/");
       }, 150);
     }
   }, [setIsLoading, loginMailAddress, loginPassword, history, setStatus]);

@@ -16,6 +16,7 @@ import loadingImg from "./assets/loading.gif";
 import "./style.css";
 import Fiction from "./components/Fiction/Fiction";
 import Biography from "./components/Bio/Biography";
+import CreateBook from "./components/CreateBook/CreateBook";
 
 import dummyBooks from "./shared/dummy_data/dummyBooks.json";
 import dummyBookIdOfUser from "./shared/dummy_data/dummyBookIdOfUser.json";
@@ -31,6 +32,8 @@ const Main = () => {
   const [order, setOrder] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
+  const [style, setStyle] = useState("");
+
   // const [currentUser, setCurrentUser] = useState(
   //   localStorage.getItem("loggedInMailAddress")
   // );
@@ -40,15 +43,24 @@ const Main = () => {
   ).bookIdList;
 
   const fetchProducts = async () => {
-    // const { data } = await commerce.products.list();
-
-    // setProducts(data);
-
     const selectedBooks = dummyBooks.filter((book) =>
       bookIdList.includes(book.bookId)
     );
     setProducts(selectedBooks);
     console.log("Books retrieved!: ", selectedBooks);
+  };
+
+  const handleAllStyles = () => {
+    setStyle("all");
+  };
+  const handleManga = () => {
+    setStyle("manga");
+  };
+  const handleEhon = () => {
+    setStyle("ehon");
+  };
+  const handleNovel = () => {
+    setStyle("novel");
   };
 
   const fetchMangaProducts = async () => {
@@ -156,12 +168,10 @@ const Main = () => {
               />
               <Switch>
                 <Route exact path="/">
-                  <Products
-                    products={products}
-                    featureProducts={featureProducts}
-                    onAddToCart={handleAddToCart}
-                    handleUpdateCartQty
-                  />
+                  <Products products={products} />
+                </Route>
+                <Route exact path="/createbook">
+                  <CreateBook style={style} onClick={handleAllStyles} />
                 </Route>
                 <Route exact path="/cart">
                   <Cart

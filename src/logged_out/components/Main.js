@@ -2,6 +2,8 @@ import React, { memo, useCallback, useState, Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import withStyles from "@mui/styles/withStyles";
 import classNames from "classnames";
+import { ThemeProvider } from "@mui/material";
+import theme from "../../theme";
 
 import NavBar from "./navigation/NavBar";
 import DialogSelector from "./register_login/DialogSelector";
@@ -53,6 +55,7 @@ const Main = (props) => {
   }, [setIsMobileDrawerOpen]);
 
   return (
+    // <ThemeProvider theme={theme}>
     <Fragment>
       <div className={classes.wrapper}>
         <DialogSelector
@@ -74,6 +77,7 @@ const Main = (props) => {
         </main>
       </div>
     </Fragment>
+    // </ThemeProvider>
   );
 };
 

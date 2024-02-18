@@ -3,7 +3,6 @@ import { Grid, InputAdornment, Input } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import Product from "./Product/Product.js";
 import useStyles from "./styles";
-import logo1 from "../../assets/dogLogo.png";
 import scrollImg from "../../assets/scroll.gif";
 import "../ProductView/style.css";
 import { Link } from "react-router-dom";
@@ -14,8 +13,10 @@ import fictionBg from "../../assets/fiction.png";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import defaultCover from "../../assets/notavailable.png";
+import profileImage from "../../assets/Profile.png";
+import BookList from "./BookList";
 
-const Products = ({ products, onAddToCart, featureProducts }) => {
+const Products = ({ products }) => {
   const classes = useStyles();
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,18 +33,17 @@ const Products = ({ products, onAddToCart, featureProducts }) => {
       <div className={classes.toolbar} />
       <img src={scrollImg} className={classes.scrollImg} />
       <div className={classes.hero}>
-        <img className={classes.heroImg} src={logo1} height="720px" />
-
+        <div class="clay card">
+          <img className={classes.heroImg} src={profileImage} height="720px" />
+        </div>
         <div className={classes.heroCont}>
-          <h1 className={classes.heroHeader}>わたしよめるモン</h1>
-          <h3 className={classes.heroDesc} ref={sectionRef}>
-            好きな本を探してね
-          </h3>
+          <h1 className={classes.heroHeader}></h1>
+          <h3 className={classes.heroDesc} ref={sectionRef}></h3>
           <div className={classes.searchs}>
             <Input
               className={classes.searchb}
               type="text"
-              placeholder="Which book are you looking for?"
+              placeholder="好きな本を探してね"
               onClick={handleInputClick}
               onChange={(event) => {
                 setSearchTerm(event.target.value);
@@ -132,6 +132,21 @@ const Products = ({ products, onAddToCart, featureProducts }) => {
         </Carousel>
       </div>
 
+      {searchTerm === "" && (
+        <div>
+          <h3 className={classes.contentHeader}>
+            Popular <span style={{ color: "#f1361d" }}>Books</span>
+          </h3>
+          <Grid
+            className={classes.contentFeatured}
+            container
+            justify="center"
+            spacing={4}
+          >
+            <BookList />
+          </Grid>
+        </div>
+      )}
       <div>
         {searchTerm === "" && (
           <>
@@ -189,48 +204,6 @@ const Products = ({ products, onAddToCart, featureProducts }) => {
           ))}
         </Grid>
       </div>
-
-      {searchTerm === "" && (
-        <>
-          <div>
-            <h3 className={classes.contentHeader}>
-              Popular <span style={{ color: "#f1361d" }}>Books</span>
-            </h3>
-            <Grid
-              className={classes.contentFeatured}
-              container
-              justify="center"
-              spacing={1}
-            >
-              {products.slice(0, 3).map((product, index) => (
-                <Grid item key={index} xs={12} sm={6} md={4}>
-                  <Card>
-                    <CardMedia
-                      style={{ height: 0, paddingTop: "56.25%" }}
-                      image={
-                        product.coverImage ? product.coverImage : defaultCover
-                      }
-                      title={product.title}
-                    />
-                    <CardContent>
-                      <Typography variant="h5" component="h2">
-                        {product.title}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                      >
-                        Style: {product.style}
-                      </Typography>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
-          </div>
-        </>
-      )}
     </main>
   );
 };
