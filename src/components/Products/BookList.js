@@ -1,102 +1,188 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Grid, InputAdornment, Input, Select } from "@material-ui/core";
+import {
+  IconButton,
+  Typography,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Hidden,
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
+import SearchIcon from "@material-ui/icons/Search";
 import "./BookList.css"; // CSSファイルをインポートします
 import defaultCover from "../../assets/notavailable.png";
+import dummyBooks from "../../shared/dummy_data/dummyBooks.json";
+import dummyBookIdOfUser from "../../shared/dummy_data/dummyBookIdOfUser.json";
+import useStyles from "./styles";
 
 const BookCard = ({ book }) => {
-  const [isHot, setIsHot] = useState(false);
-  const [isManga, setIsManga] = useState(false);
-  const [isEhon, setIsEhon] = useState(false);
-  const [isNovel, setIsNovel] = useState(false);
+  const classes = useStyles();
 
   return (
-    <div className="book-card">
-      <img
-        src={book.coverImage ? book.coverImage : defaultCover}
-        alt={book.title}
-        className="book-image"
-      />
-      <h3>{book.title}</h3>
-      <div className="rating">{book.rating} ★</div>
-      <div className="temperature-options">
-        <button
-          className={`temperature-option ${isManga ? "active" : ""}`}
-          onClick={() => {
-            setIsManga(true);
-            setIsEhon(false);
-            setIsNovel(false);
-          }}
-        >
-          漫画
-        </button>
-        <button
-          className={`temperature-option ${isEhon ? "active" : ""}`}
-          onClick={() => {
-            setIsManga(false);
-            setIsEhon(true);
-            setIsNovel(false);
-          }}
-        >
-          絵本
-        </button>
-        <button
-          className={`temperature-option ${isNovel ? "active" : ""}`}
-          onClick={() => {
-            setIsManga(false);
-            setIsEhon(false);
-            setIsNovel(true);
-          }}
-        >
-          小説
-        </button>
+    <main className={classes.mainPage}>
+      <div className={classes.toolbar} />
+      <div className="book-card">
+        <div className="rating">{book.style} ★</div>
+        <img
+          src={book.coverImage ? book.coverImage : defaultCover}
+          alt={book.title}
+          className="book-image"
+        />
+        <h3>{book.title}</h3>
+        <div className="rating">
+          {Array.from({ length: 5 }, (_, index) => (
+            <span key={index}>{index < book.ratio ? "★" : "☆"}</span>
+          ))}
+        </div>
+        <IconButton component={Link} to="/booklist" color="inherit">
+          <div className="clay card" style={{ marginRight: "10px" }}>
+            <Typography variant="h6" color="inherit">
+              <div className="add-to-cart">読む</div>
+            </Typography>
+          </div>
+        </IconButton>
       </div>
-      <button className="add-to-cart">本を作る</button>
-    </div>
+    </main>
   );
 };
 
-const BookList = () => {
-  const books = [
-    {
-      id: 1,
-      title: "ねずみの嫁入り",
-      style: "comic",
-      rating: "1.5",
-      bookId: "marriage_of_a_mouse",
+const BookList = ({ style, root }) => {
+  console.log(style);
+  const classes = useStyles();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedStyle, setSelectedStyle] = useState(style);
 
-      description: "ねずみかわいい",
-      ratio: 1.5,
-      bucket: null,
-      coverImage:
-        "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
-    },
-    {
-      id: 2,
-      title: "桃太郎",
-      style: "comic",
-      rating: "4.8",
-      bookId: "momotaro",
+  let usersBookIdList = dummyBookIdOfUser.find(
+    (user) => user.id === 1
+  ).bookIdList;
 
-      description: "",
-      ratio: 5,
-      bucket: null,
-      coverImage: null,
-    },
-    {
-      id: 3,
-      title: "赤ずきん",
-      style: "comic",
+  let books = dummyBooks.filter((book) =>
+    usersBookIdList.includes(book.bookId)
+  );
 
-      rating: "3",
-      coverImage: null,
-    },
-  ];
+  const handleAllStyles = () => {
+    usersBookIdList = dummyBookIdOfUser.find(
+      (user) => user.id === 1
+    ).bookIdList;
+    books = dummyBooks.filter((book) => usersBookIdList.includes(book.bookId));
+  };
+
+  const handleManga = () => {
+    usersBookIdList = dummyBookIdOfUser.find((user) => user.id === 1).manga;
+    books = dummyBooks.filter((book) => usersBookIdList.includes(book.bookId));
+  };
+
+  const handleNovel = () => {
+    usersBookIdList = dummyBookIdOfUser.find((user) => user.id === 1).novel;
+    books = dummyBooks.filter((book) => usersBookIdList.includes(book.bookId));
+  };
+
+  const handleEhon = () => {
+    usersBookIdList = dummyBookIdOfUser.find((user) => user.id === 1).ehon;
+    books = dummyBooks.filter((book) => usersBookIdList.includes(book.bookId));
+    console.log(books);
+  };
 
   return (
-    <div className="book-menu">
-      {books.map((book) => (
-        <BookCard key={book.id} book={book} />
-      ))}
-    </div>
+    <>
+      <main className={classes.mainPage}>
+        <div className={classes.toolbar} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "20px",
+            margin: "20px 0",
+          }}
+        >
+          {root !== true && (
+            <div
+              style={{
+                width: "60%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <FormControl style={{ minWidth: "160px", marginRight: "10px" }}>
+                <InputLabel align="center">ジャンル</InputLabel>
+                <Select
+                  value={selectedStyle}
+                  onChange={(event) => {
+                    setSelectedStyle(event.target.value);
+                  }}
+                  style={{ minWidth: "160px" }}
+                >
+                  <MenuItem value="all">ぜんぶ</MenuItem>
+                  <MenuItem value="manga">まんが</MenuItem>
+                  <MenuItem value="novel">しょうせつ</MenuItem>
+                  <MenuItem value="ehon">えほん</MenuItem>
+                </Select>
+              </FormControl>
+              <Input
+                className={classes.searchb}
+                type="text"
+                placeholder="好きな本を探してね"
+                onChange={(event) => {
+                  setSearchTerm(event.target.value);
+                }}
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                }
+              />
+            </div>
+          )}
+
+          {searchTerm !== "" && <h1>検索機能は未実装</h1>}
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center", // 中央揃えに変更されました
+              gap: "20px",
+              maxWidth: "1200px",
+            }}
+          >
+            {(() => {
+              let filteredBooks = [];
+              if (selectedStyle === "all") {
+                handleAllStyles();
+                filteredBooks = books;
+              } else if (selectedStyle === "manga") {
+                handleManga();
+                filteredBooks = books.filter((book) => book.style === "manga");
+              } else if (selectedStyle === "novel") {
+                handleNovel();
+                filteredBooks = books.filter((book) => book.style === "novel");
+              } else if (selectedStyle === "ehon") {
+                handleEhon();
+                filteredBooks = books.filter((book) => book.style === "ehon");
+              } else {
+                filteredBooks = books;
+              }
+              return filteredBooks.map((book) => (
+                <div
+                  key={book.id}
+                  style={{
+                    minWidth: "300px",
+                    maxWidth: "calc(33.333% - 20px)",
+                    flex: "1 1 calc(33.333% - 20px)",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <BookCard book={book} />
+                </div>
+              ));
+            })()}
+          </div>
+        </div>
+      </main>
+    </>
   );
 };
 

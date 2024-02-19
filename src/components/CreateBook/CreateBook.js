@@ -1,31 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { Grid, InputAdornment, Input } from "@material-ui/core";
+import { IconButton, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import SearchIcon from "@material-ui/icons/Search";
 import "./CreateBook.css"; // CSSファイルをインポートします
 import defaultCover from "../../assets/notavailable.png";
 import dummyBooks from "../../shared/dummy_data/dummyBooks.json";
 import dummyBookIdOfUser from "../../shared/dummy_data/dummyBookIdOfUser.json";
 import useStyles from "./styles";
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, style }) => {
   const classes = useStyles();
   const [isManga, setIsManga] = useState(false);
   const [isEhon, setIsEhon] = useState(false);
   const [isNovel, setIsNovel] = useState(false);
-
-  // useEffect(() => {
-  //   retrieveBooks();
-  // }, []);
-
-  const bookIdList = dummyBookIdOfUser.find(
-    (user) => user.id === Number(localStorage.getItem("currentId"))
-  ).bookIdList;
-
-  const retrieveBooks = async () => {
-    const selectedBooks = dummyBooks.filter((book) =>
-      bookIdList.includes(book.bookId)
-    );
-    setProducts(selectedBooks);
-    console.log("Books retrieved!: ", selectedBooks);
-  };
 
   return (
     <main className={classes.mainPage}>
@@ -37,7 +25,7 @@ const BookCard = ({ book }) => {
           className="book-image"
         />
         <h3>{book.title}</h3>
-        <div className="rating">{book.rating} ★</div>
+        <div className="rating">★ {book.rating}</div>
         <div className="temperature-options">
           <button
             className={`temperature-option ${isManga ? "active" : ""}`}
@@ -70,67 +58,121 @@ const BookCard = ({ book }) => {
             小説
           </button>
         </div>
-        <button className="add-to-cart">本を作る</button>
+        <IconButton component={Link} to="/booklist" color="inherit">
+          <Typography variant="h6" color="inherit">
+            <div className="add-to-cart">本を作る</div>
+          </Typography>
+        </IconButton>
       </div>
     </main>
   );
 };
 
 const CreateBook = ({ style }) => {
+  const classes = useStyles();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selected, setSelected] = useState(style);
+
+  // -------------------------
   const books = [
     {
-      id: 1,
       title: "ねずみの嫁入り",
-      style: "comic",
-      rating: "1.5",
-      bookId: "marriage_of_a_mouse",
-
-      description: "ねずみかわいい",
-      ratio: 1.5,
-      bucket: null,
+      rating: "1.9",
       coverImage:
         "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
     },
     {
-      id: 2,
-      title: "桃太郎",
-      style: "comic",
-      rating: "4.8",
-      bookId: "momotaro",
-
-      description: "",
-      ratio: 5,
-      bucket: null,
+      title: "ねずみの嫁入り2",
+      rating: "1.9",
+      coverImage:
+        "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+    },
+    {
+      title: "i am cat",
+      rating: "1.9",
       coverImage: null,
     },
     {
-      id: 3,
+      title: "注文の多い料理店",
+      rating: "1.9",
+      coverImage: null,
+    },
+    {
       title: "赤ずきん",
-      style: "comic",
-
-      rating: "3",
+      rating: "1.9",
+      coverImage: null,
+    },
+    {
+      title: "赤ずきん2",
+      rating: "1.9",
+      coverImage: null,
+    },
+    {
+      title: "走るメロス",
+      rating: "1.9",
+      coverImage: null,
+    },
+    {
+      title: "かぐや姫",
+      rating: "1.9",
       coverImage: null,
     },
   ];
+  // -------------------------
 
   return (
-    <div
-      className="book-menu"
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        gap: "20px",
-        maxWidth: "1200px",
-        margin: "0 auto",
-      }}
-    >
-      {books.map((book) => (
-        <div style={{ flex: "1 0 30%" }}>
-          <BookCard key={book.id} book={book} />
+    <>
+      <main className={classes.mainPage}>
+        <div className={classes.toolbar} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "20px",
+            margin: "20px 0",
+          }}
+        >
+          <div
+            style={{
+              width: "50%",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Input
+              className={classes.searchb}
+              type="text"
+              placeholder="好きな本を探してね"
+              onChange={(event) => {
+                setSearchTerm(event.target.value);
+                setSelected(event.target.value);
+              }}
+              startAdornment={
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              }
+            />
+          </div>
+          {searchTerm !== "" && <h1>検索機能は未実装</h1>}
+          <div
+            className="book-menu"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              gap: "20px",
+              maxWidth: "1200px",
+            }}
+          >
+            {books.map((book) => (
+              <BookCard book={book} style={selected} />
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
+      </main>
+    </>
   );
 };
 

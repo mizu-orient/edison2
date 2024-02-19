@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { CssBaseline } from "@material-ui/core";
-import { commerce } from "./lib/commerce";
+
 import Products from "./components/Products/Products";
+import BookList from "./components/Products/BookList";
 import Navbar from "./components/Navbar/Navbar";
-import Cart from "./components/Cart/Cart";
-import Checkout from "./components/CheckoutForm/Checkout/Checkout";
-import ProductView from "./components/ProductView/ProductView";
-import Manga from "./components/Manga/Manga";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,9 +11,8 @@ import "mdbreact/dist/css/mdb.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import loadingImg from "./assets/loading.gif";
 import "./style.css";
-import Fiction from "./components/Fiction/Fiction";
-import Biography from "./components/Bio/Biography";
 import CreateBook from "./components/CreateBook/CreateBook";
+import ErrorPage from "./ErrorPage";
 
 import dummyBooks from "./shared/dummy_data/dummyBooks.json";
 import dummyBookIdOfUser from "./shared/dummy_data/dummyBookIdOfUser.json";
@@ -63,94 +59,8 @@ const Main = () => {
     setStyle("novel");
   };
 
-  const fetchMangaProducts = async () => {
-    const { data } = await commerce.products.list({
-      category_slug: ["manga"],
-    });
-
-    setMangaProducts(data);
-  };
-
-  const fetchFeatureProducts = async () => {
-    const { data } = await commerce.products.list({
-      category_slug: ["featured"],
-    });
-
-    setFeatureProducts(data);
-  };
-
-  const fetchFictionProducts = async () => {
-    const { data } = await commerce.products.list({
-      category_slug: ["fiction"],
-    });
-
-    setFictionProducts(data);
-  };
-
-  const fetchBioProducts = async () => {
-    const { data } = await commerce.products.list({
-      category_slug: ["biography"],
-    });
-
-    setBioProducts(data);
-  };
-
-  const fetchCart = async () => {
-    setCart(await commerce.cart.retrieve());
-  };
-
-  const handleAddToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
-
-    setCart(item.cart);
-  };
-
-  const handleUpdateCartQty = async (lineItemId, quantity) => {
-    const response = await commerce.cart.update(lineItemId, { quantity });
-
-    setCart(response.cart);
-  };
-
-  const handleRemoveFromCart = async (lineItemId) => {
-    const response = await commerce.cart.remove(lineItemId);
-
-    setCart(response.cart);
-  };
-
-  const handleEmptyCart = async () => {
-    const response = await commerce.cart.empty();
-
-    setCart(response.cart);
-  };
-
-  const refreshCart = async () => {
-    const newCart = await commerce.cart.refresh();
-
-    setCart(newCart);
-  };
-
-  const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
-    try {
-      const incomingOrder = await commerce.checkout.capture(
-        checkoutTokenId,
-        newOrder
-      );
-
-      setOrder(incomingOrder);
-
-      refreshCart();
-    } catch (error) {
-      setErrorMessage(error.data.error.message);
-    }
-  };
-
   useEffect(() => {
     fetchProducts();
-    fetchFeatureProducts();
-    fetchCart();
-    fetchMangaProducts();
-    fetchFictionProducts();
-    fetchBioProducts();
   }, []);
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
@@ -173,45 +83,11 @@ const Main = () => {
                 <Route exact path="/createbook">
                   <CreateBook style={style} onClick={handleAllStyles} />
                 </Route>
-                <Route exact path="/cart">
-                  <Cart
-                    cart={cart}
-                    onUpdateCartQty={handleUpdateCartQty}
-                    onRemoveFromCart={handleRemoveFromCart}
-                    onEmptyCart={handleEmptyCart}
-                  />
+                <Route exact path="/booklist">
+                  <BookList style={style} onClick={handleAllStyles} />
                 </Route>
-                <Route path="/checkout" exact>
-                  <Checkout
-                    cart={cart}
-                    order={order}
-                    onCaptureCheckout={handleCaptureCheckout}
-                    error={errorMessage}
-                  />
-                </Route>
-                <Route path="/product-view/:id" exact>
-                  <ProductView />
-                </Route>
-                <Route path="/manga" exact>
-                  <Manga
-                    mangaProducts={mangaProducts}
-                    onAddToCart={handleAddToCart}
-                    handleUpdateCartQty
-                  />
-                </Route>
-                <Route path="/fiction" exact>
-                  <Fiction
-                    fictionProducts={fictionProducts}
-                    onAddToCart={handleAddToCart}
-                    handleUpdateCartQty
-                  />
-                </Route>
-                <Route path="/biography" exact>
-                  <Biography
-                    bioProducts={bioProducts}
-                    onAddToCart={handleAddToCart}
-                    handleUpdateCartQty
-                  />
+                <Route exact path="/erroepage">
+                  <ErrorPage />
                 </Route>
               </Switch>
             </div>

@@ -27,13 +27,19 @@ const Sidebar = () => {
             </IconButton>
           </li>
           <li>
+            <IconButton component={Link} to="/createbook" color="inherit">
+              <Typography variant="h6" color="inherit">
+                本を作る
+              </Typography>
+            </IconButton>
+          </li>
+          <li>
             <IconButton component={Link} to="/booklist" color="inherit">
               <Typography variant="h6" color="inherit">
                 本を読む
               </Typography>
             </IconButton>
           </li>
-          <li>PLEASE</li>
         </ul>
       </div>
     </div>

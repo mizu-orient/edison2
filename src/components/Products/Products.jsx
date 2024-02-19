@@ -15,6 +15,7 @@ import { Carousel } from "react-responsive-carousel";
 import defaultCover from "../../assets/notavailable.png";
 import profileImage from "../../assets/Profile.png";
 import BookList from "./BookList";
+import RecentBook from "./RecentBook";
 
 const Products = ({ products }) => {
   const classes = useStyles();
@@ -33,8 +34,12 @@ const Products = ({ products }) => {
       <div className={classes.toolbar} />
       <img src={scrollImg} className={classes.scrollImg} />
       <div className={classes.hero}>
-        <div class="clay card">
-          <img className={classes.heroImg} src={profileImage} height="720px" />
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <img
+            className={classes.heroImg}
+            src={profileImage}
+            style={{ width: "60%", height: "auto" }}
+          />
         </div>
         <div className={classes.heroCont}>
           <h1 className={classes.heroHeader}></h1>
@@ -60,35 +65,47 @@ const Products = ({ products }) => {
 
       {searchTerm === "" && (
         <div className={classes.categorySection}>
-          <h1 className={classes.categoryHeader}>本を読む？</h1>
-          <h3 className={classes.categoryDesc}>カテゴリーを選択</h3>
+          <>
+            <h3 className={classes.contentHeader}>
+              Read Your <span style={{ color: "#f1361d" }}>Books</span>
+            </h3>
+            <h3 className={classes.booksDesc} style={{ color: "#FFF" }}>
+              あなた自身の本を作ってみよう
+            </h3>
+          </>
           <div className={classes.buttonSection}>
             <div>
-              <Link to="manga">
+              <Link to={{ pathname: "booklist", state: { style: "manga" } }}>
                 <button
                   className={classes.categoryButton}
                   style={{ backgroundImage: `url(${mangaBg})` }}
                 ></button>
               </Link>
-              <div className={classes.categoryName}>漫画</div>
+              <div className={classes.categoryName} style={{ color: "#FFF" }}>
+                漫画
+              </div>
             </div>
             <div>
-              <Link to="biography">
+              <Link to={{ pathname: "booklist", state: { style: "ehon" } }}>
                 <button
                   className={classes.categoryButton}
                   style={{ backgroundImage: `url(${bioBg})` }}
                 ></button>
               </Link>
-              <div className={classes.categoryName}>絵本</div>
+              <div className={classes.categoryName} style={{ color: "#FFF" }}>
+                絵本
+              </div>
             </div>
             <div>
-              <Link to="fiction">
+              <Link to={{ pathname: "booklist", state: { style: "novel" } }}>
                 <button
                   className={classes.categoryButton}
                   style={{ backgroundImage: `url(${fictionBg})` }}
                 ></button>
               </Link>
-              <div className={classes.categoryName}>小説</div>
+              <div className={classes.categoryName} style={{ color: "#FFF" }}>
+                小説
+              </div>
             </div>
           </div>
         </div>
@@ -103,7 +120,7 @@ const Products = ({ products }) => {
           showStatus={false}
         >
           <div>
-            <Link to="manga">
+            <Link to="booklist">
               <button
                 className={classes.categoryButton}
                 style={{ backgroundImage: `url(${mangaBg})` }}
@@ -112,7 +129,7 @@ const Products = ({ products }) => {
             <div className={classes.categoryName}>漫画</div>
           </div>
           <div>
-            <Link to="biography">
+            <Link to="booklist">
               <button
                 className={classes.categoryButton}
                 style={{ backgroundImage: `url(${bioBg})` }}
@@ -121,7 +138,7 @@ const Products = ({ products }) => {
             <div className={classes.categoryName}>絵本</div>
           </div>
           <div>
-            <Link to="fiction">
+            <Link to="booklist">
               <button
                 className={classes.categoryButton}
                 style={{ backgroundImage: `url(${fictionBg})` }}
@@ -132,29 +149,17 @@ const Products = ({ products }) => {
         </Carousel>
       </div>
 
-      {searchTerm === "" && (
-        <div>
-          <h3 className={classes.contentHeader}>
-            Popular <span style={{ color: "#f1361d" }}>Books</span>
-          </h3>
-          <Grid
-            className={classes.contentFeatured}
-            container
-            justify="center"
-            spacing={4}
-          >
-            <BookList />
-          </Grid>
-        </div>
-      )}
       <div>
         {searchTerm === "" && (
           <>
             <h1 className={classes.booksHeader}>
-              Get Your <span style={{ color: "#f1361d" }}>Books</span>
+              Popular <span style={{ color: "#f1361d" }}>Books</span>
             </h1>
             <h3 className={classes.booksDesc}>あなた自身の本を作ってみよう</h3>
           </>
+        )}
+        {searchTerm !== "" && (
+          <h1 className={classes.booksHeader}>Search Result</h1>
         )}
         <div className={classes.mobileSearch}>
           <div className={classes.mobSearchs}>
@@ -179,29 +184,15 @@ const Products = ({ products }) => {
           justify="center"
           spacing={2}
         >
-          {products.slice(0, 3).map((product, index) => (
-            <Grid item key={index} xs={12} sm={6} md={4}>
-              <Card>
-                <CardMedia
-                  style={{ height: 0, paddingTop: "56.25%" }}
-                  image={product.coverImage ? product.coverImage : defaultCover}
-                  title={product.title}
-                />
-                <CardContent>
-                  <Typography variant="h5" component="h2">
-                    {product.title}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    スタイル: {product.style}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
+          <Grid
+            className={classes.contentFeatured}
+            container
+            justify="center"
+            spacing={4}
+            style={{ backgroundColor: "inherit" }}
+          >
+            <BookList style={"all"} root={true} />
+          </Grid>
         </Grid>
       </div>
     </main>

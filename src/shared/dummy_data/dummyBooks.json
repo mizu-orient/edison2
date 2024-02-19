@@ -1,6 +1,6 @@
 [
   {
-    "style": "comic",
+    "style": "manga",
     "bookId": "marriage_of_a_mouse",
     "title": "ねずみの嫁入り",
     "description": "ねずみかわいい",
@@ -14,7 +14,35 @@
     "dummyText": ["今日は１", "devilman", "i love"]
   },
   {
-    "style": "comic",
+    "style": "novel",
+    "bookId": "marriage_of_a_mouse",
+    "title": "ねずみの嫁入り",
+    "description": "ねずみかわいい",
+    "ratio": 1.5,
+    "bucket": null,
+    "coverImage": "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+    "dummyImages": [
+      "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+      "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
+    ],
+    "dummyText": ["今日は１", "devilman", "i love"]
+  },
+  {
+    "style": "ehon",
+    "bookId": "marriage_of_a_mouse",
+    "title": "ねずみの嫁入り",
+    "description": "ねずみかわいい",
+    "ratio": 1.5,
+    "bucket": null,
+    "coverImage": "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+    "dummyImages": [
+      "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+      "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
+    ],
+    "dummyText": ["今日は１", "devilman", "i love"]
+  },
+  {
+    "style": "manga",
     "bookId": "momotaro",
     "title": "桃太郎",
     "description": "",
@@ -28,7 +56,35 @@
     "dummyText": ["今日は１", "devilman", "i love"]
   },
   {
-    "style": "comic",
+    "style": "novel",
+    "bookId": "momotaro",
+    "title": "桃太郎",
+    "description": "",
+    "ratio": 5,
+    "bucket": null,
+    "coverImage": null,
+    "dummyImages": [
+      "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+      "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
+    ],
+    "dummyText": ["今日は１", "devilman", "i love"]
+  },
+  {
+    "style": "ehon",
+    "bookId": "momotaro",
+    "title": "桃太郎",
+    "description": "",
+    "ratio": 5,
+    "bucket": null,
+    "coverImage": null,
+    "dummyImages": [
+      "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+      "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
+    ],
+    "dummyText": ["今日は１", "devilman", "i love"]
+  },
+  {
+    "style": "manga",
     "bookId": "akazukin",
     "title": "赤ずきん",
     "description": "みんな大好き桃太郎",
@@ -40,7 +96,31 @@
     ]
   },
   {
-    "style": "comic",
+    "style": "novel",
+    "bookId": "akazukin",
+    "title": "赤ずきん",
+    "description": "みんな大好き桃太郎",
+    "ratio": 3,
+    "bucket": null,
+    "dummyImages": [
+      "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+      "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
+    ]
+  },
+  {
+    "style": "ehon",
+    "bookId": "akazukin",
+    "title": "赤ずきん",
+    "description": "みんな大好き桃太郎",
+    "ratio": 3,
+    "bucket": null,
+    "dummyImages": [
+      "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
+      "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
+    ]
+  },
+  {
+    "style": "manga",
     "bookId": "urashima",
     "title": "浦島太郎",
     "description": "",

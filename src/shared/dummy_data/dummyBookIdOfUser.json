@@ -1,7 +1,10 @@
 [
   {
     "id": 1,
-    "bookIdList": ["marriage_of_a_mouse", "momotaro", "akazukin", "urashima"]
+    "bookIdList": ["marriage_of_a_mouse", "momotaro", "akazukin", "urashima"],
+    "manga": ["marriage_of_a_mouse", "momotaro", "akazukin", "urashima"],
+    "novel": ["marriage_of_a_mouse"],
+    "ehon": ["marriage_of_a_mouse", "momotaro", "akazukin", "urashima"]
   },
   {
     "id": 2,
