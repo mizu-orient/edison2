@@ -12,6 +12,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import loadingImg from "./assets/loading.gif";
 import "./style.css";
 import CreateBook from "./components/CreateBook/CreateBook";
+import BookListSplit from "./components/CreateBook/BookListSplit";
 import ErrorPage from "./ErrorPage";
 import ReadBook from "./components/ReadBook/ReadBook";
 
@@ -130,6 +131,13 @@ const Main = () => {
                   <img src={loadingImg} alt="loading" />
                 ) : (
                   <ReadBook />
+                )}
+              </Route>
+              <Route exact path="/booklistsplit">
+                {loading ? (
+                  <img src={loadingImg} alt="loading" />
+                ) : (
+                  <BookListSplit />
                 )}
               </Route>
               <Route exact path="/erroepage">

@@ -234,6 +234,9 @@ const CreateBook = ({ style }) => {
             />
           </div>
           {searchTerm !== "" && <h1>検索機能は未実装</h1>}
+          <IconButton component={Link} to="/booklistsplit" color="inherit">
+            <SearchIcon />
+          </IconButton>
           <div
             className="book-menu"
             style={{
