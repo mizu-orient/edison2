@@ -14,6 +14,9 @@ import "./BookList.css"; // CSSファイルをインポートします
 import defaultCover from "../../assets/notavailable.png";
 import useStyles from "./styles";
 
+import dummyBooks from "../../shared/dummy_data/dummyBooks.json";
+import dummyBookIdOfUser from "../../shared/dummy_data/dummyBookIdOfUser.json";
+
 const BookCard = ({ book }) => {
   const classes = useStyles();
 
@@ -45,35 +48,22 @@ const BookCard = ({ book }) => {
   );
 };
 
-const BookList = ({ style, root }) => {
-  const [dummyBookIdOfUser, setDummyBookIdOfUser] = useState(
-    JSON.parse(localStorage.getItem("dummyBookIdOfUser"))
-  );
-  const [dummyBooks, setDummyBooks] = useState(
-    JSON.parse(localStorage.getItem("dummyBooks"))
-  );
-
-  const getBooks = () => {
-    setDummyBookIdOfUser(JSON.parse(localStorage.getItem("dummyBookIdOfUser")));
-    setDummyBooks(JSON.parse(localStorage.getItem("dummyBooks")));
-  };
-
-  let usersBookIdList = dummyBookIdOfUser.find(
-    (user) => user.id === 1
-  ).bookIdList;
-
-  let books = dummyBooks.filter((book) =>
-    usersBookIdList.includes(book.bookId)
-  );
-
+const PopularBooks = ({ style, root }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
-    getBooks();
   }, []);
 
   const classes = useStyles();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedStyle, setSelectedStyle] = useState(style);
+
+  let usersBookIdList = dummyBookIdOfUser.find(
+    (user) => user.id === 2
+  ).bookIdList;
+
+  let books = dummyBooks.filter((book) =>
+    usersBookIdList.includes(book.bookId)
+  );
 
   const handleAllStyles = () => {
     usersBookIdList = dummyBookIdOfUser.find(
@@ -96,23 +86,6 @@ const BookList = ({ style, root }) => {
     usersBookIdList = dummyBookIdOfUser.find((user) => user.id === 1).ehon;
     books = dummyBooks.filter((book) => usersBookIdList.includes(book.bookId));
     console.log(books);
-  };
-
-  const removeAllBooks = () => {
-    let dummyData = JSON.parse(localStorage.getItem("dummyBookIdOfUser"));
-    let updatedDummyData = dummyData.map((user) => {
-      if (user.id === 1) {
-        return {
-          ...user,
-          bookIdList: [],
-          manga: [],
-          novel: [],
-          ehon: [],
-        };
-      }
-      return user;
-    });
-    localStorage.setItem("dummyBookIdOfUser", JSON.stringify(updatedDummyData));
   };
 
   return (
@@ -195,7 +168,7 @@ const BookList = ({ style, root }) => {
               } else {
                 filteredBooks = books;
               }
-              return filteredBooks.map((book) => (
+              return filteredBooks.slice(0, 3).map((book) => (
                 <div
                   key={book.id}
                   style={{
@@ -206,32 +179,10 @@ const BookList = ({ style, root }) => {
                     justifyContent: "center",
                   }}
                 >
-                  <BookCard book={book} />
+                  <BookCard key={book.id} book={book} />
                 </div>
               ));
             })()}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              marginTop: "20px",
-            }}
-          >
-            <button
-              style={{
-                padding: "10px 20px",
-                fontSize: "16px",
-                color: "white",
-                backgroundColor: "#f1361d",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-              }}
-              onClick={removeAllBooks}
-            >
-              本を全削除
-            </button>
           </div>
         </div>
       </main>
@@ -239,4 +190,4 @@ const BookList = ({ style, root }) => {
   );
 };
 
-export default BookList;
+export default PopularBooks;

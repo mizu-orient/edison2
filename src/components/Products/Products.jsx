@@ -1,12 +1,10 @@
 import React, { useState, useRef } from "react";
 import { Grid, InputAdornment, Input } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import Product from "./Product/Product.js";
 import useStyles from "./styles";
 import scrollImg from "../../assets/scroll.gif";
 import "../ProductView/style.css";
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import mangaBg from "../../assets/comicDog.png";
 import bioBg from "../../assets/ehon.png";
 import fictionBg from "../../assets/fiction.png";
@@ -14,8 +12,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import defaultCover from "../../assets/notavailable.png";
 import profileImage from "../../assets/Profile.png";
-import BookList from "./BookList";
-import RecentBook from "./RecentBook";
+import PopularBooks from "./PopularBooks";
 
 const Products = ({ products }) => {
   const classes = useStyles();
@@ -34,7 +31,13 @@ const Products = ({ products }) => {
       <div className={classes.toolbar} />
       <img src={scrollImg} className={classes.scrollImg} />
       <div className={classes.hero}>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <img
             className={classes.heroImg}
             src={profileImage}
@@ -182,16 +185,16 @@ const Products = ({ products }) => {
           className={classes.content}
           container
           justify="center"
-          spacing={2}
+          spacing={1} // spacingの値を2から1に変更しました
         >
           <Grid
             className={classes.contentFeatured}
             container
             justify="center"
-            spacing={4}
+            spacing={1} // spacingの値を2から1に変更しました
             style={{ backgroundColor: "inherit" }}
           >
-            <BookList style={"all"} root={true} />
+            <PopularBooks style={"all"} root={true} />
           </Grid>
         </Grid>
       </div>

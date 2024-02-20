@@ -276,7 +276,7 @@ export default makeStyles((theme) => ({
     contentFeatured: {
       gap: 0,
       padding: theme.spacing(0),
-      paddingTop: theme.spacing(4),
+      paddingTop: theme.spacing(1),
       paddingBottom: theme.spacing(7),
     },
     categoryFeatured: {
