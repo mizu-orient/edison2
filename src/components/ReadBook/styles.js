@@ -43,9 +43,8 @@ export default makeStyles((theme) => ({
   contentHeader: {
     textAlign: "center",
     color: "#FFF",
-    fontSize: 64,
-    fontFamily: "Darumadrop One",
-    fontWeight: 400,
+    fontSize: 40,
+    fontFamily: "Poppins",
     fontWeight: "bolder",
     paddingTop: theme.spacing(5),
     backgroundColor: "#001524",
@@ -145,9 +144,8 @@ export default makeStyles((theme) => ({
   booksHeader: {
     textAlign: "center",
     color: "#001524",
-    fontSize: 64,
-    fontFamily: "Darumadrop One",
-    fontWeight: 400,
+    fontSize: 40,
+    fontFamily: "Raleway",
     fontWeight: "bolder",
     paddingTop: theme.spacing(10),
     letterSpacing: "-.8px",

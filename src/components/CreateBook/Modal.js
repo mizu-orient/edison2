@@ -31,7 +31,7 @@ const Modal = ({ isOpen, onClose, bookId, style, isError, getResult }) => {
     } else if (style === "ehon" && !user.ehon.includes(bookId)) {
       user.ehon.push(bookId);
     }
-    user.bookIdList.push(bookId);
+
     localStorage.setItem(
       "dummyBookIdOfUser",
       JSON.stringify(dummyBookIdOfUser)

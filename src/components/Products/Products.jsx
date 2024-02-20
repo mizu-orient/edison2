@@ -70,7 +70,7 @@ const Products = ({ products }) => {
         <div className={classes.categorySection}>
           <>
             <h3 className={classes.contentHeader}>
-              Read Your <span style={{ color: "#f1361d" }}>Books</span>
+              <span style={{ color: "#f1361d" }}>よんでみよう</span>
             </h3>
             <h3 className={classes.booksDesc} style={{ color: "#FFF" }}>
               あなた自身の本を作ってみよう
@@ -156,7 +156,7 @@ const Products = ({ products }) => {
         {searchTerm === "" && (
           <>
             <h1 className={classes.booksHeader}>
-              Popular <span style={{ color: "#f1361d" }}>Books</span>
+              みんなの <span style={{ color: "#f1361d" }}>おすすめ</span>
             </h1>
             <h3 className={classes.booksDesc}>あなた自身の本を作ってみよう</h3>
           </>

@@ -13,6 +13,7 @@ import loadingImg from "./assets/loading.gif";
 import "./style.css";
 import CreateBook from "./components/CreateBook/CreateBook";
 import ErrorPage from "./ErrorPage";
+import ReadBook from "./components/ReadBook/ReadBook";
 
 import dummyDataOfBooks from "./shared/dummy_data/dummyBooks.json";
 import dummyDataOfUser from "./shared/dummy_data/dummyBookIdOfUser.json";
@@ -121,7 +122,14 @@ const Main = () => {
                 {loading ? (
                   <img src={loadingImg} alt="loading" />
                 ) : (
-                  <BookList style={style} onClick={handleAllStyles} />
+                  <BookList style={"all"} onClick={handleAllStyles} />
+                )}
+              </Route>
+              <Route exact path="/readbook">
+                {loading ? (
+                  <img src={loadingImg} alt="loading" />
+                ) : (
+                  <ReadBook />
                 )}
               </Route>
               <Route exact path="/erroepage">

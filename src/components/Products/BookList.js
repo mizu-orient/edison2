@@ -17,6 +17,10 @@ import useStyles from "./styles";
 const BookCard = ({ book }) => {
   const classes = useStyles();
 
+  const handleBook = () => {
+    localStorage.setItem("currentBook", JSON.stringify(book));
+  };
+
   return (
     <main className={classes.mainPage}>
       <div className={classes.toolbar} />
@@ -33,7 +37,15 @@ const BookCard = ({ book }) => {
             <span key={index}>{index < book.ratio ? "★" : "☆"}</span>
           ))}
         </div>
-        <IconButton component={Link} to="/booklist" color="inherit">
+        <IconButton
+          component={Link}
+          to={{
+            pathname: "/readbook",
+          }}
+          state={{ state: 0 }}
+          onClick={() => handleBook(book)}
+          color="inherit"
+        >
           <div className="clay card" style={{ marginRight: "10px" }}>
             <Typography variant="h6" color="inherit">
               <div className="add-to-cart">読む</div>
@@ -79,7 +91,14 @@ const BookList = ({ style, root }) => {
     usersBookIdList = dummyBookIdOfUser.find(
       (user) => user.id === 1
     ).bookIdList;
-    books = dummyBooks.filter((book) => usersBookIdList.includes(book.bookId));
+    let allBookIdList = [
+      ...new Set([
+        ...dummyBookIdOfUser.find((user) => user.id === 1).manga,
+        ...dummyBookIdOfUser.find((user) => user.id === 1).novel,
+        ...dummyBookIdOfUser.find((user) => user.id === 1).ehon,
+      ]),
+    ];
+    books = dummyBooks.filter((book) => allBookIdList.includes(book.bookId));
   };
 
   const handleManga = () => {

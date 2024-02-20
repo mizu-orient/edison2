@@ -11,7 +11,7 @@
       "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
       "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
     ],
-    "dummyText": ["今日は１", "devilman", "i love"]
+    "dummyText": ["今日は\n１", "devil\nman", "i love"]
   },
   {
     "style": "novel",
@@ -25,7 +25,11 @@
       "https://1.bp.blogspot.com/-0S46QU6KoCM/WxvKQsHCcnI/AAAAAAABMn4/QEjMZyeeJVIrGAmauqC5F887L--c8hzpACLcBGAs/s800/monogatari_momotarou_solo.png",
       "https://1.bp.blogspot.com/-CKc-Trn35FE/X9lJKrd_jeI/AAAAAAABc1w/GbDHjFtUzDY6OZRl1FnS3FQVwJz2Scl7gCNcBGAsYHQ/s650/animal_black_sheep_hitsuji.png"
     ],
-    "dummyText": ["今日は１", "devilman", "i love"]
+    "dummyText": [
+      "今日は１\nがんばったぞ\nいい気分だ\nはははははは　Yes\nわかる",
+      "devilman",
+      "i love"
+    ]
   },
   {
     "style": "ehon",
